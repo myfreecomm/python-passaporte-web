@@ -1,0 +1,82 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: HEAD
+    path: /organizations/api/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: ''}
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '2334', content-type: application/json, date: 'Fri, 27 Dec 2013
+        20:39:01 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding', x-throttle: status=SUCCESS; next=1.00 sec}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: HEAD
+    path: /accounts/api/create/
+    port: 80
+    protocol: http
+  response:
+    body: {string: ''}
+    headers: {allow: 'POST, HEAD, OPTIONS', connection: keep-alive, content-type: application/json,
+      date: 'Fri, 27 Dec 2013 20:39:01 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4,
+      vary: 'Authenticate, Accept'}
+    status: {code: 403, message: FORBIDDEN}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: HEAD
+    path: /organizations/api/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: ''}
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '2334', content-type: application/json, date: 'Fri, 27 Dec 2013
+        20:39:02 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding', x-throttle: status=SUCCESS; next=1.00 sec}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: HEAD
+    path: /accounts/api/create/
+    port: 80
+    protocol: http
+  response:
+    body: {string: ''}
+    headers: {allow: 'POST, HEAD, OPTIONS', connection: keep-alive, content-type: application/json,
+      date: 'Fri, 27 Dec 2013 20:39:02 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4,
+      vary: 'Authenticate, Accept'}
+    status: {code: 403, message: FORBIDDEN}

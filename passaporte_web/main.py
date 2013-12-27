@@ -32,12 +32,20 @@ class Account(Resource):
 
 class Application(Resource):
 
-    def prepare_collections(self, *args, **kwargs):
-        super(Application, self).prepare_collections(*args, **kwargs)
+    def __init__(self, host, token, secret):
+        self.host = host
+        self.token = token
+        self.secret = secret
+        super(Application, self).__init__({})
+        self.prepare_collections()
 
+    def prepare_collections(self, *args, **kwargs):
         self.accounts = Collection(
-            url='/organizations/api/accounts/', type=Account, session=self._session
+            url='{0}/organizations/api/accounts/'.format(self.host),
+            user=self.token, password=self.secret, resource_class=Account
         )
+
         self.users = Collection(
-            url='/accounts/api/create/', type=Identity, session=self._session
+            url='{0}/accounts/api/create/'.format(self.host),
+            user=self.token, password=self.secret, resource_class=Identity
         )

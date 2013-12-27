@@ -1,0 +1,98 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: GET
+    path: /organizations/api/accounts/
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        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
+        ef7Hxz8BZvAG7qxSAAA=
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '1781', content-type: application/json, date: 'Fri, 27 Dec 2013
+        19:22:23 GMT', link: '<http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=2>;
+        rel=next, <http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=2>;
+        rel=last, <http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=1>;
+        rel=first', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding', x-throttle: status=SUCCESS; next=1.00 sec}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: GET
+    path: /organizations/api/accounts/?page=2
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAHDTvVIC/9WYS4/TMBSF/0qUNZ76GSfZIYQQC8SGHRpV1y8mUppEeQDDiP+Ok8lIM9MBHNSk
+        Re2iTWP7HOf4860/38U3RdfX7e1+aMs4j+Kbvm/y3a6Dyqj6+xU0zVUDXQdN3fb2m1VXuj5cqXZX
+        t1+gKn5AX9RVt4Om2IHW9VD1/gvXmdKWIwqpRlxQh8AShjBglWTGGa5gNw+7i19FcVNCte/K4cso
+        YKiKvrddj4bGQG/NeMP8ca9ul0gEcygqL60pCz3rLIyt+qK/3euy8J+m0Q/2oGzb7f0Q4Lv/fPdw
+        5aZo9sb2UJTd1rMzK9hpJpMsIxQpgAxxwBplqUgQywRInGhphJxMPBgbRYY0Gtu0dWm70XFcf6ts
+        G1//fBVdknlljTaCEaQlJ4gbRlGGjUQgneSMOuaIODIf0uip+aG7QO9EO4aVcMjK8WarMu9AUUQz
+        DsRgym1ijryHNHr5wV8/WmTQj31R7KX5DBEakSSnNCfptBK3nY5xSPu9KdqpBz9yNZSlv1bVfeEe
+        VvXSZ/Sk8T+K8pn5Wmj7AI27uIKDHUW8n59H9GYizHTvTLZn8Il95OJ55ON+PnkERq/vf50mfijM
+        eD1E4X3Pxuzv03SuDMfTmjr9/mIFqMSNQ/uII86IQqn2Uc04Ic6kkEpq/r6/HO0rc7Q23g6CzGy8
+        HUwb5xZIXGT+cpAoI4pzwXIuTovEoOnYGonBolZH4ofb6GN/Y9vo9aOS7jEbQ6Sux8ZFYV6LjTwF
+        6xzzgMbaL3bMMqRMJpFJicAU21Rx/ns26sH/cPDxvww2BpnZmI1bVYuLvF8aGmUu6GnRGDQdW6Mx
+        WNTqaHzrxfp1q20ExyVjiMz1sLgoyGthUWJMNWSAiCHCi8ACKW4ZSgkY/6JKJ+l/g8UgM2c6QThC
+        wzxFG7s/IsE9obB/kwjjfHrHK6IhWOVWfySfQyFE4HpQWBThtaAgHBFOKjGeDSU+5UygVEgfEQOC
+        GYaZJX+AQmfL8mKQEGTlTNXC6qXSIvPn5uHzUinNGTttqRQ0HVuXSsGiNiyVXjhdC5G5HhUXBXkt
+        KiYyBeUShqwi1v+NZQZlDhvkeOIrNVCSkz+crl1YqRRk5lLQcPJSKcj92UulYJWro+FdOzR1ZGw0
+        ng/bJ0dLISLXA8OiGMc/r38BzC4/EtcdAAA=
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '881', content-type: application/json, date: 'Fri, 27 Dec 2013
+        19:22:24 GMT', link: '<http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=1>;
+        rel=prev, <http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=2>;
+        rel=last, <http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/?page=1>;
+        rel=first', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding', x-throttle: status=SUCCESS; next=1.00 sec}
+    status: {code: 200, message: OK}
