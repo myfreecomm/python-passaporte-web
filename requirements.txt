@@ -1,0 +1,2 @@
+git+git://github.com/myfreecomm/python-api-toolkit.git#egg=api_toolkit
+vcrpy==0.5.0
