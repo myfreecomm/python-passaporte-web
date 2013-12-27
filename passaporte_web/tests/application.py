@@ -196,3 +196,6 @@ class ApplicationUsersTest(unittest.TestCase):
     def test_application_must_have_permission_to_get_user(self):
         with use_pw_cassette('user/get_without_permission'):
             self.assertRaises(requests.HTTPError, self.app.users.get, uuid=test_user_uuid)
+
+    def test_get_by_unknown_parameter_raises_TypeError(self):
+        self.assertRaises(TypeError, self.app.users.get, first_name='Myfc ID')
