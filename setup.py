@@ -39,7 +39,7 @@ setuptools.setup(
     url="http://github.com/myfreecomm/python-passaporte-web",
     license="Apache 2.0",
     description="Python client app for Passaporte Web.",
-    long_description=open(join(dirname(__file__), "README.rst")).read(),
+    long_description=open(join(dirname(__file__), "README.md")).read(),
     keywords="python passaporteweb",
     classifiers=[
         'Intended Audience :: Developers',
