@@ -18,6 +18,7 @@ TEST_CREDENTIALS = {
 test_user_email = 'identity_client@disposableinbox.com'
 test_user_password = '*SudN7%r$MiYRa!E'
 
+
 class ApplicationTest(unittest.TestCase):
 
     def setUp(self):
