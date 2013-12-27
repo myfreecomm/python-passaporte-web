@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from httplib import urlsplit
 from api_toolkit import Collection, Resource
 
 __all__ = ['Notification', 'Identity', 'Account', 'Application',]
@@ -30,6 +30,23 @@ class Account(Resource):
     pass
 
 
+class ApplicationUsers(Collection):
+    resource_class = Identity
+
+    def get(self, **kwargs):
+        url_pieces = urlsplit(self.url)
+        base_url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
+
+        if 'uuid' in kwargs:
+            url = '{0}{1}/'.format(base_url, kwargs['uuid'])
+        elif 'email' in kwargs:
+            url = '{0}?email={1}'.format(base_url, kwargs['email'])
+        else:
+            raise TypeError('Either "uuid" or "email" must be given')
+
+        return self.resource_class.load(url, session=self._session)
+
+
 class Application(Resource):
 
     def __init__(self, host, token, secret):
@@ -45,7 +62,7 @@ class Application(Resource):
             user=self.token, password=self.secret, resource_class=Account
         )
 
-        self.users = Collection(
+        self.users = ApplicationUsers(
             url='{0}/accounts/api/create/'.format(self.host),
             user=self.token, password=self.secret, resource_class=Identity
         )

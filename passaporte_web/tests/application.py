@@ -18,6 +18,7 @@ TEST_CREDENTIALS = {
 }
 test_user_email = 'identity_client@disposableinbox.com'
 test_user_password = '*SudN7%r$MiYRa!E'
+test_user_uuid = 'c3769912-baa9-4a0c-9856-395a706c7d57'
 
 
 class ApplicationTest(unittest.TestCase):
@@ -63,9 +64,6 @@ class ApplicationUsersTest(unittest.TestCase):
     def test_application_users_are_not_iterable(self):
         app_users = self.app.users.all()
         self.assertRaises(ValueError, app_users.next)
-
-    def test_application_users_cannot_be_read(self):
-        self.assertRaises(ValueError, self.app.users.get, 1)
 
     def test_application_users_can_be_created(self):
         user_data = {
@@ -172,3 +170,29 @@ class ApplicationUsersTest(unittest.TestCase):
 
         with use_pw_cassette('user/registration_failure_password_mismatch'):
             self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_get_user_by_email(self):
+        with use_pw_cassette('user/get_by_email'):
+            user = self.app.users.get(email=test_user_email)
+
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.email, test_user_email)
+
+    def test_get_user_by_email_fails_when_email_is_not_registered(self):
+        with use_pw_cassette('user/get_by_unknown_email'):
+            self.assertRaises(requests.HTTPError, self.app.users.get, email='notregistered@test.example')
+
+    def test_get_user_by_uuid(self):
+        with use_pw_cassette('user/get_by_uuid'):
+            user = self.app.users.get(uuid=test_user_uuid)
+
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.email, test_user_email)
+
+    def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
+        with use_pw_cassette('user/get_by_unknown_uuid'):
+            self.assertRaises(requests.HTTPError, self.app.users.get, uuid='001')
+
+    def test_application_must_have_permission_to_get_user(self):
+        with use_pw_cassette('user/get_without_permission'):
+            self.assertRaises(requests.HTTPError, self.app.users.get, uuid=test_user_uuid)
