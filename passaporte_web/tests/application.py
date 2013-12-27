@@ -9,7 +9,7 @@ from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Account, Identity
 
-__all__ = ['ApplicationTest', ]
+__all__ = ['ApplicationTest', 'ApplicationUsersTest']
 
 TEST_CREDENTIALS = {
     'host': 'http://sandbox.app.passaporteweb.com.br',
@@ -53,6 +53,13 @@ class ApplicationTest(unittest.TestCase):
 
         self.assertRaises(ValueError, first_account.delete)
 
+
+class ApplicationUsersTest(unittest.TestCase):
+
+    def setUp(self):
+        with use_pw_cassette('application/collections_options'):
+            self.app = Application(**TEST_CREDENTIALS)
+
     def test_application_users_are_not_iterable(self):
         app_users = self.app.users.all()
         self.assertRaises(ValueError, app_users.next)
@@ -85,4 +92,31 @@ class ApplicationTest(unittest.TestCase):
         }
 
         with use_pw_cassette('user/registration_failure_one_password'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_application_must_have_permissions_to_create_users(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': test_user_password,
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_app_without_permissions'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_user_cpf_must_be_unique(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': test_user_password,
+            'cpf': '11111111111',
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_duplicated_cpf'):
             self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
