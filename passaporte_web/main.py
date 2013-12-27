@@ -20,7 +20,7 @@ class Identity(Resource):
 
     @property
     def profile(self):
-        if hasattr(self, 'profile_url')
+        if hasattr(self, 'profile_url'):
             return Profile.load(self.profile_url)
         else:
             return None

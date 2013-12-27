@@ -9,5 +9,8 @@ from passaporte_web.main import Application
 class ApplicationTest(unittest.TestCase):
 
     def test_instance_creation(self):
-        app = Application()
+        app = Application({})
         import pdb; pdb.set_trace()
+
+if __name__ == '__main__':
+    unittest.main()
