@@ -51,7 +51,7 @@ class ApplicationTest(unittest.TestCase):
         with use_pw_cassette('application/account_list'):
             first_account = self.app.accounts.all().next()
 
-        self.assertRaises(ValueError, first_account.delete)
+        self.assertRaises(ValueError, first_account.save)
 
 
 class ApplicationUsersTest(unittest.TestCase):
