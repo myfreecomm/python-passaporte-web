@@ -1,4 +1,4 @@
-include README.rst
+include README.md
 include requirements.txt
 recursive-include passaporte_web/tests *.py
 recursive-include passaporte_web/tests/cassettes *
