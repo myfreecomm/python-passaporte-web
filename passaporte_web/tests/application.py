@@ -107,6 +107,19 @@ class ApplicationUsersTest(unittest.TestCase):
         with use_pw_cassette('user/registration_failure_app_without_permissions'):
             self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
 
+    def test_user_email_must_be_unique(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': test_user_password,
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_duplicated_email'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
     def test_user_cpf_must_be_unique(self):
         user_data = {
             'first_name': 'Myfc ID',
@@ -119,4 +132,43 @@ class ApplicationUsersTest(unittest.TestCase):
         }
 
         with use_pw_cassette('user/registration_failure_duplicated_cpf'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_user_cpf_must_be_valid(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': test_user_password,
+            'cpf': '1111111111111111111',
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_invalid_cpf'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_user_must_agree_with_tos(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': test_user_password,
+        }
+
+        with use_pw_cassette('user/registration_failure_missing_tos'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
+
+    def test_user_passwords_must_match(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'password2': 'will not match',
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_password_mismatch'):
             self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
