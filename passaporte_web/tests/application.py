@@ -6,7 +6,7 @@ from vcr import VCR
 import api_toolkit
 from helpers import use_cassette as use_pw_cassette
 
-from passaporte_web.main import Application, Account
+from passaporte_web.main import Application, Account, Identity
 
 __all__ = ['ApplicationTest', ]
 
@@ -70,3 +70,5 @@ class ApplicationTest(unittest.TestCase):
 
         with use_pw_cassette('application/user_creation_success'):
             user = self.app.users.create(**user_data)
+
+        self.assertTrue(isinstance(user, Identity))
