@@ -3,6 +3,7 @@ from os import path
 import unittest
 from vcr import VCR
 
+import requests
 import api_toolkit
 from helpers import use_cassette as use_pw_cassette
 
@@ -69,7 +70,19 @@ class ApplicationTest(unittest.TestCase):
             'tos': True,
         }
 
-        with use_pw_cassette('application/user_creation_success'):
+        with use_pw_cassette('user/registration_success'):
             user = self.app.users.create(**user_data)
 
         self.assertTrue(isinstance(user, Identity))
+
+    def test_application_users_must_be_created_with_correct_data(self):
+        user_data = {
+            'first_name': 'Myfc ID',
+            'last_name': 'Clients',
+            'email': test_user_email,
+            'password': test_user_password,
+            'tos': True,
+        }
+
+        with use_pw_cassette('user/registration_failure_one_password'):
+            self.assertRaises(requests.HTTPError, self.app.users.create ,**user_data)
