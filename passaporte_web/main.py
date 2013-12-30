@@ -5,7 +5,14 @@ from api_toolkit import Collection, Resource
 __all__ = ['Notification', 'Profile', 'Identity', 'Account', 'Application',]
 
 
-class Notification(Resource):
+class BaseResource(Resource):
+
+    def load_options(self):
+        super(BaseResource, self).load_options()
+        self._meta['fields'] = self.response.json()['fields'].keys()
+
+
+class Notification(BaseResource):
     pass
 
 
@@ -16,7 +23,7 @@ class Notifications(Collection):
         super(Notifications, self).__init__('/notifications/api/', *args, **kwargs)
 
 
-class Profile(Resource):
+class Profile(BaseResource):
 
     @property
     def url(self):
@@ -26,7 +33,7 @@ class Profile(Resource):
         return None
 
 
-class Identity(Resource):
+class Identity(BaseResource):
     url_attribute_name = 'update_info_url'
 
     @property
@@ -37,8 +44,14 @@ class Identity(Resource):
             return None
 
 
-class Account(Resource):
-    pass
+class Account(BaseResource):
+
+    def __init__(self, *args, **kwargs):
+        super(Account, self).__init__(*args, **kwargs)
+
+        if self.expiration:
+            # The api gives a datetime but expects a date
+            self.expiration = self.expiration.split()[0]
 
 
 class ApplicationUsers(Collection):
@@ -75,13 +88,13 @@ class ApplicationUsers(Collection):
         return user
 
 
-class Application(Resource):
+class Application(BaseResource):
 
     def __init__(self, host, token, secret):
         self.host = host
         self.token = token
         self.secret = secret
-        super(Application, self).__init__({})
+        super(Application, self).__init__()
         self.prepare_collections()
 
     def prepare_collections(self, *args, **kwargs):

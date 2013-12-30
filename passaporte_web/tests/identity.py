@@ -24,3 +24,12 @@ class IdentityTest(unittest.TestCase):
             profile = self.user.profile
 
         self.assertTrue(isinstance(profile, Profile))
+
+    def test_user_profile_can_be_updated(self):
+        with use_pw_cassette('profile/read'):
+            profile = self.user.profile
+
+        with use_pw_cassette('profile/update_with_same_data'):
+            profile = profile.save()
+
+        self.assertTrue(isinstance(profile, Profile))

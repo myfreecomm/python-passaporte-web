@@ -1,0 +1,30 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "basic", "expiration": "2014-05-01"}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Length, '50']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: PUT
+    path: /organizations/api/accounts/859d3542-84d6-4909-b1bd-4f43c1312065/
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIALT1wVIC/81Ty27jMAz8FUPnKJJl2Yl93dN+Q1EY1MONAFsSJLltGvTf13IcYB89pHvoLuCD
+        QZGcGXJ4QScTkwvnfg4j6gp0Ssl3hESwSrjXPXi/9xAjeBeSftFiL920F4G48ATWvEEyzkYC3hCQ
+        0s02RXKsW1XVnOEjVw3mLW2xKIXCfOCVLKuS0aYmGyxBuwL5EWwfx/kpExAQjczR2StIWvXi/Ble
+        oCZjFz5+NHIjZ5S2yaRzL0ez/K2Qk56EDrFfIGBp/3C5RU7G90onMGP86pFsDAijcBRCl7gSHDDX
+        vMHQtIDhIGvGhWIgjquIm7BM8p6iXBPcqGNWjNyL1QE9vu+K/0l8rSs2tOyAJQeBOeUaQ1tKLBYB
+        ktYwiLr5Q/w9RR+JX0KDczsBeQ6PP3kO0nWmZYVLhitaMNpVh47T1ZhfO5kMqV+9CWuHjRfHtMa0
+        LCjt1i8nWZfMcHP9Z/f3S/Ffsow6PBupb0d1QRYmnUl833ZVfFsvcM3dzv2340SLHdGG/EEf+6xj
+        MtOS6OK6itmo/HAPxWtrpfqr1f6VwdH7D7DUzKx0BQAA
+    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '432', content-type: application/json, date: 'Mon, 30 Dec 2013
+        22:37:40 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding'}
+    status: {code: 200, message: OK}

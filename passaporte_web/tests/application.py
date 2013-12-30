@@ -37,11 +37,13 @@ class ApplicationTest(unittest.TestCase):
 
         self.assertRaises(ValueError, first_account.delete)
 
-    def test_application_accounts_cannot_be_updated(self):
+    def test_application_accounts_can_be_updated(self):
         with use_pw_cassette('application/account_list'):
             first_account = self.app.accounts.all().next()
+            first_account.load_options()
 
-        self.assertRaises(ValueError, first_account.save)
+        with use_pw_cassette('accounts/update_with_same_data'):
+            updated_account = first_account.save()
 
 
 class ApplicationUsersTest(unittest.TestCase):
