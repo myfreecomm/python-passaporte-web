@@ -1,31 +1,26 @@
 # -*- coding: utf-8 -*-
-from os import path
 import unittest
-from vcr import VCR
 
 import requests
 import api_toolkit
 from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Account, Identity
+from passaporte_web.tests.identity import TEST_USER
 
 __all__ = ['ApplicationTest', 'ApplicationUsersTest']
 
-TEST_CREDENTIALS = {
+APP_CREDENTIALS = {
     'host': 'http://sandbox.app.passaporteweb.com.br',
     'token': 'qxRSNcIdeA',
     'secret': '1f0AVCZPJbRndF9FNSGMOWMfH9KMUDaX',
 }
-test_user_email = 'identity_client@disposableinbox.com'
-test_user_password = '*SudN7%r$MiYRa!E'
-test_user_uuid = 'c3769912-baa9-4a0c-9856-395a706c7d57'
-
 
 class ApplicationTest(unittest.TestCase):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
-            self.app = Application(**TEST_CREDENTIALS)
+            self.app = Application(**APP_CREDENTIALS)
 
     def test_instance_has_accounts_and_users(self):
         self.assertTrue(hasattr(self.app, 'accounts'))
@@ -59,7 +54,7 @@ class ApplicationUsersTest(unittest.TestCase):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
-            self.app = Application(**TEST_CREDENTIALS)
+            self.app = Application(**APP_CREDENTIALS)
 
     def test_application_users_are_not_iterable(self):
         app_users = self.app.users.all()
@@ -69,9 +64,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
             'tos': True,
         }
 
@@ -84,8 +79,8 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
             'tos': True,
         }
 
@@ -96,9 +91,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
             'tos': True,
         }
 
@@ -109,9 +104,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
             'tos': True,
         }
 
@@ -122,9 +117,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
             'cpf': '11111111111',
             'tos': True,
         }
@@ -136,9 +131,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
             'cpf': '1111111111111111111',
             'tos': True,
         }
@@ -150,9 +145,9 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
-            'password2': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
+            'password2': TEST_USER['password'],
         }
 
         with use_pw_cassette('user/registration_failure_missing_tos'):
@@ -162,8 +157,8 @@ class ApplicationUsersTest(unittest.TestCase):
         user_data = {
             'first_name': 'Myfc ID',
             'last_name': 'Clients',
-            'email': test_user_email,
-            'password': test_user_password,
+            'email': TEST_USER['email'],
+            'password': TEST_USER['password'],
             'password2': 'will not match',
             'tos': True,
         }
@@ -173,10 +168,10 @@ class ApplicationUsersTest(unittest.TestCase):
 
     def test_get_user_by_email(self):
         with use_pw_cassette('user/get_by_email'):
-            user = self.app.users.get(email=test_user_email)
+            user = self.app.users.get(email=TEST_USER['email'])
 
         self.assertTrue(isinstance(user, Identity))
-        self.assertEquals(user.email, test_user_email)
+        self.assertEquals(user.email, TEST_USER['email'])
 
     def test_get_user_by_email_fails_when_email_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_email'):
@@ -184,10 +179,10 @@ class ApplicationUsersTest(unittest.TestCase):
 
     def test_get_user_by_uuid(self):
         with use_pw_cassette('user/get_by_uuid'):
-            user = self.app.users.get(uuid=test_user_uuid)
+            user = self.app.users.get(uuid=TEST_USER['uuid'])
 
         self.assertTrue(isinstance(user, Identity))
-        self.assertEquals(user.email, test_user_email)
+        self.assertEquals(user.email, TEST_USER['email'])
 
     def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_uuid'):
@@ -195,7 +190,29 @@ class ApplicationUsersTest(unittest.TestCase):
 
     def test_application_must_have_permission_to_get_user(self):
         with use_pw_cassette('user/get_without_permission'):
-            self.assertRaises(requests.HTTPError, self.app.users.get, uuid=test_user_uuid)
+            self.assertRaises(requests.HTTPError, self.app.users.get, uuid=TEST_USER['uuid'])
 
     def test_get_by_unknown_parameter_raises_TypeError(self):
         self.assertRaises(TypeError, self.app.users.get, first_name='Myfc ID')
+
+    def test_authenticate_user_with_email_and_password(self):
+        with use_pw_cassette('user/authenticate_with_email_and_password'):
+            user = self.app.users.authenticate(email=TEST_USER['email'], password=TEST_USER['password'])
+        
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.uuid, TEST_USER['uuid'])
+
+    def test_authenticate_user_with_id_token(self):
+        with use_pw_cassette('user/authenticate_with_id_token'):
+            user = self.app.users.authenticate(id_token=TEST_USER['id_token'])
+        
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.uuid, TEST_USER['uuid'])
+
+    def test_user_credentials_are_replaced_by_app_credentials_in_session(self):
+        with use_pw_cassette('user/authenticate_with_email_and_password'):
+            user = self.app.users.authenticate(email=TEST_USER['email'], password=TEST_USER['password'])
+        
+        self.assertEquals(user._session.auth, (
+            APP_CREDENTIALS['token'], APP_CREDENTIALS['secret']
+        ))

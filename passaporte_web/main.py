@@ -17,6 +17,7 @@ class Notifications(Collection):
 
 
 class Identity(Resource):
+    url_attribute_name = 'update_info_url'
 
     @property
     def profile(self):
@@ -45,6 +46,23 @@ class ApplicationUsers(Collection):
             raise TypeError('Either "uuid" or "email" must be given')
 
         return self.resource_class.load(url, session=self._session)
+
+    def authenticate(self, **kwargs):
+        url_pieces = urlsplit(self.url)
+        url = '{0.scheme}://{0.netloc}/accounts/api/auth/'.format(url_pieces)
+
+        if 'email' in kwargs and 'password' in kwargs:
+            user = self.resource_class.load(url, user=kwargs['email'], password=kwargs['password'])
+        elif 'id_token' in kwargs:
+            user = self.resource_class.load(url, password=kwargs['id_token'])
+        else:
+            raise TypeError('User credentials are required must be given')
+
+        # The user credentials must not be used anymore
+        del(user._session)
+        user._session = self._session
+
+        return user
 
 
 class Application(Resource):
