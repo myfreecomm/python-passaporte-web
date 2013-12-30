@@ -10,3 +10,17 @@ def use_cassette(*args, **kwargs):
         match_on = ['url', 'method', 'headers', 'body'],
         record_mode = 'new_episodes',
     ).use_cassette(*args, **kwargs)
+
+
+TEST_USER = {
+    'email': 'identity_client@disposableinbox.com',
+    'password': '*SudN7%r$MiYRa!E',
+    'id_token': '729dd3a15cf03a80024d0986deee9ae91fdd5d834fabf6f9',
+    'uuid': 'c3769912-baa9-4a0c-9856-395a706c7d57',
+}
+
+APP_CREDENTIALS = {
+    'host': 'http://sandbox.app.passaporteweb.com.br',
+    'token': 'qxRSNcIdeA',
+    'secret': '1f0AVCZPJbRndF9FNSGMOWMfH9KMUDaX',
+}

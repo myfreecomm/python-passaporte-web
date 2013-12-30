@@ -2,7 +2,7 @@
 from httplib import urlsplit
 from api_toolkit import Collection, Resource
 
-__all__ = ['Notification', 'Identity', 'Account', 'Application',]
+__all__ = ['Notification', 'Profile', 'Identity', 'Account', 'Application',]
 
 
 class Notification(Resource):
@@ -16,13 +16,23 @@ class Notifications(Collection):
         super(Notifications, self).__init__('/notifications/api/', *args, **kwargs)
 
 
+class Profile(Resource):
+
+    @property
+    def url(self):
+        if 'identity_info_url' in self.resource_data:
+            return '{0.identity_info_url}/profile/'.format(self)
+        
+        return None
+
+
 class Identity(Resource):
     url_attribute_name = 'update_info_url'
 
     @property
     def profile(self):
         if hasattr(self, 'profile_url'):
-            return Profile.load(self.profile_url)
+            return Profile.load(self.profile_url, session=self._session)
         else:
             return None
 

@@ -6,15 +6,9 @@ import api_toolkit
 from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Account, Identity
-from passaporte_web.tests.identity import TEST_USER
+from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['ApplicationTest', 'ApplicationUsersTest']
-
-APP_CREDENTIALS = {
-    'host': 'http://sandbox.app.passaporteweb.com.br',
-    'token': 'qxRSNcIdeA',
-    'secret': '1f0AVCZPJbRndF9FNSGMOWMfH9KMUDaX',
-}
 
 class ApplicationTest(unittest.TestCase):
 
