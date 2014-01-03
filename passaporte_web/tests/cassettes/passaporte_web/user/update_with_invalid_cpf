@@ -1,0 +1,21 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"first_name": "Identity", "last_name": "Client", "send_partner_news":
+      true, "send_myfreecomm_news": true, "cpf": "11111111110"}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Content-Length, '128']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: PUT
+    path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"cpf": ["Invalid CPF number."]}'}
+    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-length: '32',
+      content-type: application/json, date: 'Fri, 03 Jan 2014 19:09:12 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 400, message: BAD REQUEST}

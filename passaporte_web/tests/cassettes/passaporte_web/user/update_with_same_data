@@ -1,0 +1,34 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"first_name": "Identity", "last_name": "Client", "send_partner_news":
+      true, "send_myfreecomm_news": true}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Content-Length, '106']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: PUT
+    path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAHYHx1IC/71WQW7bMBD8iqFzaUmWZEk5NSh66KHopbciEJbkMiFAkQRJJXGD/L2k7ASOkRZy
+        2+QmcK3Z4cxqxw+ZkM6HQcOI2cUq+8JRBxl22YdVpuCo8EnJWEnHHjUfLLig0Q0a73wsBzdhLE2T
+        5OnHrGq3fV9uCAXoSQ0FI33XbEnVN9AWW9bypk1Q0g/AgrzFIwjLIeAgtTDD5FRCuwnBXuS5B82p
+        uV+DtWsL3oM1LuAd0jUz45q6HBgzkw4+Bytzub+IRJ8vYZMnOtoEKSSDII1Ot3rIZsD4VCQ5pA/n
+        0HmBNnPKHiPME8sI9eMhswr04NV0nZA9KoVuZnJQ/XPEGtExXF3uX0tFZxTOr2fmLnqQXSXZzpPK
+        uGvQ8ucRt2fxGlE2oqUNgVZso1pVQ7qmrUjBoal4VVRYdq+q9Q/CnN8c7610M0LsrCel5rOAToMa
+        5iE8HD6N5BLk5M+JJWzywYy/MwVeM2Xy/92TugMUoqrJpmBxgouqJ5T3LeFd2RSbAjta12/myeLm
+        Z3uyBPkVTyYtQ0Afjj35ult9CzfoVpfWqmcBXvgCfJT6PxuDDdCt2AgCNVJSVyUlHYubpq/LUvAO
+        unbD38yYxc3PNmYJ8h+MIfslzo8N+h7P32+JQc16yjBOFnSM1E26Cpbxa4eCbnsueE3hzXxZ3Pxs
+        X5YgZ49XTyE97oRDTNvqJKfjhrqVDPcZd0jK3cD2Ef+3iXsAJSm6l2XuSed9PuIIch6Dk+pHLr01
+        HqhCqROryCGJaJ0RUuG7/lk49IyEfwFVa071QAkAAA==
+    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '601', content-type: application/json, date: 'Fri, 03 Jan 2014
+        18:54:46 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding'}
+    status: {code: 200, message: OK}
