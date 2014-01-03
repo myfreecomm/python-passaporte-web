@@ -72,6 +72,8 @@ class ApplicationUsers(Collection):
 
         if 'include_expired_accounts' in kwargs:
             url_args.append(('include_expired_accounts', 'true'))
+        if 'include_other_services' in kwargs:
+            url_args.append(('include_other_services', 'true'))
             
         if url_args:
             qs_items = ['{0[0]}={0[1]}'.format(item) for item in url_args]

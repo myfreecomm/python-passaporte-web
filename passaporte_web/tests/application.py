@@ -190,6 +190,13 @@ class ApplicationUsersTest(unittest.TestCase):
         self.assertEquals(user.email, TEST_USER['email'])
         self.assertEquals(len(user.accounts), 6)
 
+    def test_get_user_including_accounts_from_other_services(self):
+        with use_pw_cassette('user/get_user_including_other_services'):
+            user = self.app.users.get(email=TEST_USER['email'], include_other_services=True)
+
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.email, TEST_USER['email'])
+        self.assertEquals(len(user.accounts), 5)
 
     def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_uuid'):
