@@ -27,3 +27,23 @@
         18:31:40 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
         Accept, Accept-Encoding'}
     status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjcyOWRkM2ExNWNmMDNhODAwMjRkMDk4NmRlZWU5YWU5MWZkZDVkODM0ZmFiZjZmOQ==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: OPTIONS
+    path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"detail": "You need to login or otherwise authenticate the request."}'}
+    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-length: '70',
+      content-type: application/json, date: 'Fri, 03 Jan 2014 18:54:40 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 401, message: UNAUTHORIZED}

@@ -7,9 +7,19 @@ __all__ = ['Notification', 'Profile', 'Identity', 'Account', 'Application',]
 
 class BaseResource(Resource):
 
+    @classmethod
+    def load(cls, url, **kwargs):
+        instance = super(BaseResource, cls).load(url, **kwargs)
+        instance.load_options()
+        return instance
+
     def load_options(self):
         super(BaseResource, self).load_options()
-        self._meta['fields'] = self.response.json()['fields'].keys()
+        content = self.response.json()
+        if 'fields' in content:
+            self._meta['fields'] = content['fields'].keys()
+        else:
+            self._meta['fields'] = None
 
 
 class Notification(BaseResource):
