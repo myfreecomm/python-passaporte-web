@@ -86,6 +86,21 @@ class ServiceAccount(BaseResource):
             # The api gives a datetime but expects a date
             self.expiration = self.expiration.split()[0]
 
+    @property
+    def uuid(self):
+        return self.get_account_attribute('uuid')
+
+    @property
+    def name(self):
+        return self.get_account_attribute('name')
+
+    def get_account_attribute(self, attrname):
+        attrvalue = self.resource_data.get(attrname)
+        if attrvalue is None and 'account_data' in self.resource_data:
+            attrvalue = self.resource_data['account_data'].get(attrname)
+
+        return attrvalue
+
 
 class ApplicationUsers(Collection):
     resource_class = Identity
