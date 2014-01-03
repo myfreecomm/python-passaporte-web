@@ -5,7 +5,7 @@ import requests
 import api_toolkit
 from helpers import use_cassette as use_pw_cassette
 
-from passaporte_web.main import Application, Account, Identity
+from passaporte_web.main import Application, ServiceAccount, Account, Identity
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['ApplicationTest', 'ApplicationUsersTest']
@@ -29,7 +29,7 @@ class ApplicationTest(unittest.TestCase):
 
         self.assertEquals(len(app_accounts), 26)
         for item in app_accounts:
-            self.assertTrue(isinstance(item, Account))
+            self.assertTrue(isinstance(item, ServiceAccount))
 
     def test_application_accounts_cannot_be_deleted(self):
         with use_pw_cassette('application/account_list'):
@@ -197,6 +197,12 @@ class ApplicationUsersTest(unittest.TestCase):
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
         self.assertEquals(len(user.accounts), 5)
+
+        service_accounts = [item for item in user.accounts if isinstance(item, ServiceAccount)]
+        external_accounts = [item for item in user.accounts if isinstance(item, Account)]
+
+        self.assertEquals(len(service_accounts), 4)
+        self.assertEquals(len(external_accounts), 1)
 
     def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_uuid'):

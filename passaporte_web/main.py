@@ -2,7 +2,7 @@
 from httplib import urlsplit
 from api_toolkit import Collection, Resource
 
-__all__ = ['Notification', 'Profile', 'Identity', 'Account', 'Application',]
+__all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application',]
 
 
 class BaseResource(Resource):
@@ -53,11 +53,34 @@ class Identity(BaseResource):
         else:
             return None
 
+    @property
+    def accounts(self):
+        accounts = []
 
-class Account(BaseResource):
+        for item in self.resource_data['accounts']:
+            if 'url' in item:
+                account = ServiceAccount(**item)
+                account._session = self._session
+            else:
+                account = Account(**item)
+
+            accounts.append(account)
+
+        return accounts
+
+
+class Account(object):
+    # Accounts can only be manipulated via ServiceAccounts
+
+    def __init__(self, name, uuid):
+        self.name = name
+        self.uuid = uuid
+
+
+class ServiceAccount(BaseResource):
 
     def __init__(self, *args, **kwargs):
-        super(Account, self).__init__(*args, **kwargs)
+        super(ServiceAccount, self).__init__(*args, **kwargs)
 
         if self.expiration:
             # The api gives a datetime but expects a date
@@ -121,7 +144,7 @@ class Application(BaseResource):
     def prepare_collections(self, *args, **kwargs):
         self.accounts = Collection(
             url='{0}/organizations/api/accounts/'.format(self.host),
-            user=self.token, password=self.secret, resource_class=Account
+            user=self.token, password=self.secret, resource_class=ServiceAccount
         )
 
         self.users = ApplicationUsers(
