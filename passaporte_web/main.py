@@ -29,9 +29,6 @@ class Notification(BaseResource):
 class Notifications(Collection):
     resource_class = Notification
 
-    def __init__(self, *args, **kwargs):
-        super(Notifications, self).__init__('/notifications/api/', *args, **kwargs)
-
 
 class Profile(BaseResource):
 
@@ -101,6 +98,13 @@ class ServiceAccount(BaseResource):
 
         return attrvalue
 
+    def prepare_collections(self, *args, **kwargs):
+        if 'history_url' in self.resource_data:
+            self.history = Collection(url=self.history_url, session=self._session)
+
+        if 'notifications_url' in self.resource_data:
+            self.notifications = Notifications(url=self.notifications_url, session=self._session)
+
 
 class ApplicationUsers(Collection):
     resource_class = Identity
@@ -161,8 +165,10 @@ class Application(BaseResource):
             url='{0}/organizations/api/accounts/'.format(self.host),
             user=self.token, password=self.secret, resource_class=ServiceAccount
         )
+        self.accounts.load_options()
 
         self.users = ApplicationUsers(
             url='{0}/accounts/api/create/'.format(self.host),
             user=self.token, password=self.secret, resource_class=Identity
         )
+        self.users.load_options()

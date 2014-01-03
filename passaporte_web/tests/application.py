@@ -10,6 +10,7 @@ from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['ApplicationTest', 'ApplicationUsersTest']
 
+
 class ApplicationTest(unittest.TestCase):
 
     def setUp(self):
@@ -34,6 +35,7 @@ class ApplicationTest(unittest.TestCase):
     def test_application_accounts_cannot_be_deleted(self):
         with use_pw_cassette('application/account_list'):
             first_account = self.app.accounts.all().next()
+            first_account.load_options()
 
         self.assertRaises(ValueError, first_account.delete)
 
