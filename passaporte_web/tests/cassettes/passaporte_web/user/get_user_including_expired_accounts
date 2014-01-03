@@ -1,0 +1,35 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: GET
+    path: /accounts/api/identities/?email=identity_client@disposableinbox.com&include_expired_accounts=true
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAIwBx1IC/72WTW/bMAyG/4rh85TI33ZPK4Zh2GHYZbehMCiJagU4siHJ/VjR/z7JSYs06DZl
+        bYr4EIj2S4oPKfE+lcpY12vYYHqWpF8FaqfcXfohSQfYM3walLeEZYta9BMYp9H0Gm+sNzszozfN
+        sxLhZV40dddlOWEAHSmBctK1VU2KroKG1rwRVROklO2BO3WNexKTAIe90nLsZzMEtSvnprP12oIW
+        bLxdwTStJrAWptE4vEG24uNmxcwaOB9n7ewaJrVW240otOuYaNYhHD06JRUHp0YddnWfLoL+Hw3p
+        UNYdE84ztSWm9MHLPEbppX7ep9MAurfDfBmULQ4DmiWSXdY/e60NGo7J+fazYDTjgMvn6XjjGaQX
+        IW3HpWo0l6DVr73YnpJXyaySDasINLL22Soq0lZNQaiAqhAFLTBrX8zWKxJzvHO8nZRZFLxnPQ/D
+        subQaBj6pQh3i48lGaMc+Bwg4bN14+ZPUOAlKLN9cyZlCyhlUZKccl/BtOgIE11DRJtVNKfYsrI8
+        GZNo50cziVF+gcmslXNo3T6Tb3fJd3eFJjmfpuEpAc+4gNgo/cZgsAJWy1wSKJGRssgYabk/aboy
+        y6RooW1ycTIw0c6PBhOj/BcwZHuIi31AP/z6+x1iUPKOcfSVBS0nZRW2gpnvdqCs7oQUJYOTcYl2
+        fjSXGOXIQ+yLmacxEZgEYGhPj6RuWmCyLgiyDH1NFYJ0kgoiy9q3ObCmzE7XKtHOnyFJcxqS658s
+        ofRsedJ/MYpxFclo1zPv0zINpTmHDkgmssofxrQirMSCtBkI/8sZr09370c7fz2fGFfpw8XjoLu5
+        kwYx3PgHs66/5a8Vx+2cuJs273q+HZP/d2rdiZIw/sbNrQeetzMmbkAtdXFg/SiUnUYLbEClQ1Q+
+        hpCwyYxSDfiuA/fOpw/4N/6ZzNWEDAAA
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '708', content-type: application/json, date: 'Fri, 03 Jan 2014
+        18:29:32 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding'}
+    status: {code: 200, message: OK}

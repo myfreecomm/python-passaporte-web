@@ -60,13 +60,22 @@ class ApplicationUsers(Collection):
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
         base_url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
+        url_args = []
 
         if 'uuid' in kwargs:
             url = '{0}{1}/'.format(base_url, kwargs['uuid'])
         elif 'email' in kwargs:
-            url = '{0}?email={1}'.format(base_url, kwargs['email'])
+            url = base_url
+            url_args.append(('email', kwargs['email']))
         else:
             raise TypeError('Either "uuid" or "email" must be given')
+
+        if 'include_expired_accounts' in kwargs:
+            url_args.append(('include_expired_accounts', 'true'))
+            
+        if url_args:
+            qs_items = ['{0[0]}={0[1]}'.format(item) for item in url_args]
+            url = '{0}?{1}'.format(url, '&'.join(qs_items))
 
         return self.resource_class.load(url, session=self._session)
 

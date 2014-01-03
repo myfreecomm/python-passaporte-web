@@ -168,6 +168,7 @@ class ApplicationUsersTest(unittest.TestCase):
 
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
+        self.assertEquals(len(user.accounts), 4)
 
     def test_get_user_by_email_fails_when_email_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_email'):
@@ -179,6 +180,16 @@ class ApplicationUsersTest(unittest.TestCase):
 
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
+        self.assertEquals(len(user.accounts), 4)
+
+    def test_get_user_including_expired_accounts(self):
+        with use_pw_cassette('user/get_user_including_expired_accounts'):
+            user = self.app.users.get(email=TEST_USER['email'], include_expired_accounts=True)
+
+        self.assertTrue(isinstance(user, Identity))
+        self.assertEquals(user.email, TEST_USER['email'])
+        self.assertEquals(len(user.accounts), 6)
+
 
     def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_uuid'):
