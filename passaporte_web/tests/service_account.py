@@ -38,7 +38,7 @@ class IdentityAccountsTest(unittest.TestCase):
 
         self.assertEquals(
             service_account.resource_data.keys(), [
-                u'plan_slug', u'name', u'roles', u'url', u'notifications', u'expiration',
+                u'plan_slug', u'name', u'roles', u'url', u'expiration',u'notifications_url',
                 u'external_id', u'uuid'
         ])
         self.assertEquals(
