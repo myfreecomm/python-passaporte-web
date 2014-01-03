@@ -216,12 +216,23 @@ class ApplicationUsersTest(unittest.TestCase):
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.uuid, TEST_USER['uuid'])
 
+    def test_authenticate_user_with_email_and_wrong_password(self):
+        with use_pw_cassette('user/authenticate_with_email_and_wrong_password'):
+            self.assertRaises(
+                requests.HTTPError,
+                self.app.users.authenticate, email=TEST_USER['email'], password='wrong password'
+            )
+
     def test_authenticate_user_with_id_token(self):
         with use_pw_cassette('user/authenticate_with_id_token'):
             user = self.app.users.authenticate(id_token=TEST_USER['id_token'])
         
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.uuid, TEST_USER['uuid'])
+
+    def test_authenticate_user_with_invalid_id_token(self):
+        with use_pw_cassette('user/authenticate_with_invalid_id_token'):
+            self.assertRaises(requests.HTTPError, self.app.users.authenticate, id_token='invalid_id_token')
 
     def test_user_credentials_are_replaced_by_app_credentials_in_session(self):
         with use_pw_cassette('user/authenticate_with_email_and_password'):
