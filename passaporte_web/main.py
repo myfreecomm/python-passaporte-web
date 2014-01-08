@@ -50,20 +50,13 @@ class Identity(BaseResource):
         else:
             return None
 
-    @property
-    def accounts(self):
-        accounts = []
-
-        for item in self.resource_data['accounts']:
-            if 'url' in item:
-                account = ServiceAccount(**item)
-                account._session = self._session
-            else:
-                account = Account(**item)
-
-            accounts.append(account)
-
-        return accounts
+    def prepare_collections(self, *args, **kwargs):
+        url_pieces = urlsplit(self.url)
+        user_accounts_url = '{0.scheme}://{0.netloc}/organizations/api/identities/{1.uuid}/accounts/'.format(url_pieces, self)
+        self.accounts = IdentityAccounts(
+            url=user_accounts_url, session=self._session,
+            seed=self.resource_data.get('accounts', [])
+        )
 
 
 class Account(object):
@@ -104,6 +97,25 @@ class ServiceAccount(BaseResource):
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
+
+
+class IdentityAccounts(Collection):
+    resource_class = ServiceAccount
+    _seed = []
+
+    def __init__(self, url, **kwargs):
+        self._seed = kwargs.pop('seed', [])
+        super(IdentityAccounts, self).__init__(url, **kwargs)
+
+    def from_seed(self):
+        for item in self._seed:
+            if 'url' in item:
+                account = ServiceAccount(**item)
+                account._session = self._session
+            else:
+                account = Account(**item)
+
+            yield account
 
 
 class ApplicationUsers(Collection):
@@ -147,6 +159,9 @@ class ApplicationUsers(Collection):
         # The user credentials must not be used anymore
         del(user._session)
         user._session = self._session
+
+        # FIXME: Prepare collections must be called again in order to use the right credentials
+        user.prepare_collections()
 
         return user
 

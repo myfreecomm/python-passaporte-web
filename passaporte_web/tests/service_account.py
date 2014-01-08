@@ -19,7 +19,7 @@ class IdentityAccountsTest(unittest.TestCase):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
     def test_user_accounts_can_be_updated_with_same_data(self):
-        service_account = self.user.accounts[0]
+        service_account = self.user.accounts.from_seed().next()
 
         with use_pw_cassette('accounts/load_options_and_update'):
             service_account.load_options()
@@ -30,7 +30,7 @@ class IdentityAccountsTest(unittest.TestCase):
         self.assertEquals(updated_service_account.expiration, service_account.expiration)
 
     def test_user_account_format_changes_after_update(self):
-        service_account = self.user.accounts[0]
+        service_account = self.user.accounts.from_seed().next()
 
         with use_pw_cassette('accounts/load_options_and_update'):
             service_account.load_options()
@@ -54,7 +54,7 @@ class IdentityAccountsTest(unittest.TestCase):
         """
 
         with use_pw_cassette('accounts/load_options_and_update_all'):
-            for item in self.user.accounts:
+            for item in self.user.accounts.from_seed():
                 name, uuid = item.name, item.uuid
 
                 if isinstance(item, ServiceAccount):
