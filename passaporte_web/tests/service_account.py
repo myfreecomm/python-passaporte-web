@@ -121,3 +121,17 @@ class IdentityAccountsTest(unittest.TestCase):
 
         # The last item is an account from another application
         self.assertTrue(isinstance(user_accounts[-1], Account))
+
+    def test_load_expired_user_accounts_from_other_services(self):
+        with use_pw_cassette('accounts/load_expired_user_accounts_from_other_services'):
+            user_accounts = list(self.user.accounts.all(
+                include_expired_accounts=True,
+                include_other_services=True
+            ))
+
+        self.assertEquals(len(user_accounts), 7)
+        for item in user_accounts[:-1]:
+            self.assertTrue(isinstance(item, ServiceAccount))
+
+        # The last item is an account from another application
+        self.assertTrue(isinstance(user_accounts[-1], Account))

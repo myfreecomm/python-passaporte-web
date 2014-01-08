@@ -80,7 +80,6 @@ class ServiceAccount(BaseResource):
 
         return instance
 
-
     def __init__(self, *args, **kwargs):
         super(ServiceAccount, self).__init__(*args, **kwargs)
 
