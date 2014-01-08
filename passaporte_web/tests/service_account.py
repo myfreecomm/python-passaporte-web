@@ -2,6 +2,7 @@
 import unittest
 
 import requests
+from api_toolkit import Collection
 from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Identity, ServiceAccount
@@ -17,6 +18,9 @@ class IdentityAccountsTest(unittest.TestCase):
 
         with use_pw_cassette('user/get_by_uuid'):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
+
+    def test_user_accounts_are_a_collection(self):
+        self.assertTrue(isinstance(self.user.accounts, Collection))
 
     def test_user_accounts_can_be_updated_with_same_data(self):
         service_account = self.user.accounts.from_seed().next()
@@ -66,3 +70,43 @@ class IdentityAccountsTest(unittest.TestCase):
 
                 self.assertEquals(name, updated_item.name)
                 self.assertEquals(uuid, updated_item.uuid)
+
+    def test_load_user_accounts(self):
+        with use_pw_cassette('accounts/load_user_accounts'):
+            user_accounts = list(self.user.accounts.all())
+
+        self.assertEquals(len(user_accounts), 4)
+        for item in user_accounts:
+            self.assertTrue(isinstance(item, ServiceAccount))
+
+    def test_load_for_user_without_accounts(self):
+        with use_pw_cassette('accounts/load_for_user_without_accounts'):
+            user_accounts = list(self.user.accounts.all())
+
+        self.assertEquals(len(user_accounts), 0)
+
+    def test_load_for_application_without_permissions(self):
+        with use_pw_cassette('accounts/application_without_permissions'):
+            self.assertRaises(requests.HTTPError, self.user.accounts.all().next)
+
+    def test_load_using_invalid_credentials(self):
+        with use_pw_cassette('accounts/using_invalid_credentials'):
+            self.user.accounts._session.auth = ('invalid', 'credentials')
+            self.assertRaises(requests.HTTPError, self.user.accounts.all().next)
+
+    def test_user_accounts_cannot_be_deleted(self):
+        with use_pw_cassette('accounts/load_user_accounts'):
+            first_account = self.user.accounts.all().next()
+
+        with use_pw_cassette('accounts/account_options'):
+            first_account.load_options()
+
+        self.assertRaises(ValueError, first_account.delete)
+
+    def test_load_expired_user_accounts(self):
+        with use_pw_cassette('accounts/load_expired_user_accounts'):
+            user_accounts = list(self.user.accounts.all(include_expired_accounts=True))
+
+        self.assertEquals(len(user_accounts), 6)
+        for item in user_accounts:
+            self.assertTrue(isinstance(item, ServiceAccount))

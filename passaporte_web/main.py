@@ -55,7 +55,7 @@ class Identity(BaseResource):
         user_accounts_url = '{0.scheme}://{0.netloc}/organizations/api/identities/{1.uuid}/accounts/'.format(url_pieces, self)
         self.accounts = IdentityAccounts(
             url=user_accounts_url, session=self._session,
-            seed=self.resource_data.get('accounts', [])
+            resource_class=ServiceAccount, seed=self.resource_data.get('accounts', [])
         )
 
 
@@ -100,7 +100,6 @@ class ServiceAccount(BaseResource):
 
 
 class IdentityAccounts(Collection):
-    resource_class = ServiceAccount
     _seed = []
 
     def __init__(self, url, **kwargs):
@@ -119,7 +118,6 @@ class IdentityAccounts(Collection):
 
 
 class ApplicationUsers(Collection):
-    resource_class = Identity
 
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
