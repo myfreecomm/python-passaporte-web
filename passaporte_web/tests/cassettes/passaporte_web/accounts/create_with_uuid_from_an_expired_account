@@ -1,0 +1,25 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba",
+      "expiration": null}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '93']
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"membership_details_url": "/organizations/api/accounts/a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba/members/c3769912-baa9-4a0c-9856-395a706c7d57/",
+        "plan_slug": "unittest-expired", "roles": ["owner"], "url": "/organizations/api/accounts/a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba/",
+        "expiration": null, "service_data": {"name": "Identity Client", "slug": "identity_client"},
+        "account_data": {"name": "Test Account", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba"},
+        "add_member_url": "/organizations/api/accounts/a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba/members/"}'}
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '546',
+      content-type: application/json, date: 'Fri, 28 Jun 2013 19:22:45 GMT', location: 'http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba/',
+      p3p: CP="NON DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    status: {code: 201, message: CREATED}

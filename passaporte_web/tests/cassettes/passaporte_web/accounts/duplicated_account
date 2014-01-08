@@ -1,0 +1,43 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "unittest", "name": "Test Account", "expiration": null}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Length, '69']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '"ServiceAccount for service identity_client and account ''Test
+        Account'' already exists and is active. Conflict"'}
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '110',
+      content-type: application/json, date: 'Wed, 08 Jan 2014 23:00:15 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 409, message: CONFLICT}
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba",
+      "expiration": null}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '93']
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '"ServiceAccount for service identity_client and account ''a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba''
+        already exists and is active. Conflict"'}
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '134',
+      content-type: application/json, date: 'Wed, 08 Jan 2014 23:00:16 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 409, message: CONFLICT}

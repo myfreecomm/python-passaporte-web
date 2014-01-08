@@ -53,6 +53,26 @@ class BaseServiceAccountCollectionsTest(unittest.TestCase):
 
 class BaseCreateServiceAccount(unittest.TestCase):
 
+    def test_create_account_by_name_using_invalid_credentials(self):
+        with use_pw_cassette('accounts/application_using_invalid_credentials'):
+            self.collection._session.auth = ('invalid', 'credentials')
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='Test Account',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_by_uuid_using_invalid_credentials(self):
+        with use_pw_cassette('accounts/application_using_invalid_credentials'):
+            self.collection._session.auth = ('invalid', 'credentials')
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
     def test_create_account_by_name_without_permissions(self):
         with use_pw_cassette('accounts/application_without_permissions'):
             self.assertRaises(
@@ -70,6 +90,126 @@ class BaseCreateServiceAccount(unittest.TestCase):
                 plan_slug='unittest',
                 expiration=None,
             )
+
+    def test_create_duplicated_account_by_name_fails(self):
+        with use_pw_cassette('accounts/duplicated_account'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='Test Account',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_duplicated_account_by_uuid_fails(self):
+        with use_pw_cassette('accounts/duplicated_account'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_without_name_or_uuid_fails(self):
+        with use_pw_cassette('accounts/create_without_name_or_uuid'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_with_empty_name_fails(self):
+        with use_pw_cassette('accounts/create_without_name_or_uuid'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_with_empty_uuid_fails(self):
+        with use_pw_cassette('accounts/create_without_name_or_uuid'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_with_invalid_uuid_fails(self):
+        with use_pw_cassette('accounts/create_with_invalid_uuid'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='00000000-0000-0000-0000-000000000000',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_with_invalid_uuid_fails_pt2(self):
+        with use_pw_cassette('accounts/create_with_invalid_uuid'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='This is clearly not an UUID',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_with_invalid_expiration_fails(self):
+        with use_pw_cassette('accounts/create_with_invalid_expiration'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='Back to the future',
+                plan_slug='unittest',
+                expiration='Primeiro de maio de 2010',
+            )
+
+    def test_create_account_with_invalid_expiration_after_9999_fails(self):
+        with use_pw_cassette('accounts/create_with_expiration_after_9999'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='Back to the future',
+                plan_slug='unittest',
+                expiration='10000-01-01',
+            )
+
+    def test_create_account_with_expiration_in_the_past_works(self):
+        with use_pw_cassette('accounts/create_with_expiration_in_the_past'):
+            new_account = self.collection.create(
+                name='Back to the future',
+                plan_slug='unittest',
+                expiration='2010-05-01',
+            )
+
+        self.assertTrue(isinstance(new_account, ServiceAccount))
+
+    def test_create_account_with_name(self):
+        with use_pw_cassette('accounts/create_with_name'):
+            new_account = self.collection.create(
+                name='No account with this name exists',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+        self.assertTrue(isinstance(new_account, ServiceAccount))
+
+    def test_create_account_with_uuid(self):
+        with use_pw_cassette('accounts/create_with_uuid'):
+            new_account = self.collection.create(
+                uuid='e5ab6f2f-a4eb-431b-8c12-9411fd8a872d',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+        self.assertTrue(isinstance(new_account, ServiceAccount))
+
+    def test_create_account_with_uuid_from_an_expired_account(self):
+        with use_pw_cassette('accounts/create_with_uuid_from_an_expired_account'):
+            new_account = self.collection.create(
+                uuid='a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+        self.assertTrue(isinstance(new_account, ServiceAccount))
 
 
 class IdentityAccountsTest(BaseServiceAccountCollectionsTest, BaseCreateServiceAccount):

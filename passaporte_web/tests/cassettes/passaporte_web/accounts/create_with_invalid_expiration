@@ -1,0 +1,21 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "unittest", "name": "Back to the future", "expiration": "Primeiro
+      de maio de 2010"}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Content-Length, '97']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"field_errors": {"expiration": ["Informe uma data v\u00e1lida."]}}'}
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '67',
+      content-type: application/json, date: 'Wed, 08 Jan 2014 23:20:43 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 400, message: BAD REQUEST}

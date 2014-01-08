@@ -1,0 +1,31 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"plan_slug": "unittest", "name": "No account with this name exists", "expiration":
+      null}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Content-Length, '89']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAHDazVIC/8WTy27DIBBFfwWxLsHOw4mz7aqb/kBVWWMgzUgYEIybpFH+vdhxpT42bRftDpgL
+        98yDM99jIh9PTR8t3zK+JwpbKRM43frjDEKYBUgJgo9kDqadKd/N2ih9fAKHL0DoXZIQUIJSvneU
+        pF6CLopKi11VapE3O9FWphKbZa11udq1y7KWk63kN4x3pmtNTHsMjTYEaNNf00wEUi3WVV2Xc9EC
+        1FlcKFFvVpVY1CtYF5Va69V6RA4WXJNs/zRQ9g6JTKIh0AcNZHTTnn7CD7pDl7mDRTUlgdo4Qjo1
+        ymJeja7RW5Pyuw/cH5yJ/HEw/NtKvc8RaHCeF+VSFKUoNmxebovNdjEfROYYMI42WeR6a/OZ84S7
+        twx/2uMPl39Jnkx8RmWazA/Z+8wddGaAuJuqzW7Hao/aqbufGsEvOTY5f33n3rMpxg5Ie0Z5ztkQ
+        ZOaYJz6N5etRD9rvUF/dtG6uE/pf/4JfXgHghkW+KQQAAA==
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '376', content-type: application/json, date: 'Wed, 08 Jan 2014
+        23:08:32 GMT', location: 'http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/d4ad006d-f61d-4adf-b6e6-849dd15fb419/',
+      p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept,
+        Accept-Encoding'}
+    status: {code: 201, message: CREATED}
