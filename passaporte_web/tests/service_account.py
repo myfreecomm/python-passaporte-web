@@ -135,3 +135,54 @@ class IdentityAccountsTest(unittest.TestCase):
 
         # The last item is an account from another application
         self.assertTrue(isinstance(user_accounts[-1], Account))
+
+    def test_load_user_accounts_with_a_given_role(self):
+        with use_pw_cassette('accounts/load_user_accounts_with_a_given_role'):
+            user_accounts = list(self.user.accounts.all(role='owner'))
+
+        self.assertEquals(len(user_accounts), 2)
+        for item in user_accounts:
+            self.assertEquals(item.roles, ['owner'])
+
+    def test_load_expired_user_accounts_with_a_given_role(self):
+        with use_pw_cassette('accounts/load_expired_user_accounts_with_a_given_role'):
+            user_accounts = list(self.user.accounts.all(
+                role='owner',
+                include_expired_accounts=True
+            ))
+
+        self.assertEquals(len(user_accounts), 4)
+        for item in user_accounts:
+            self.assertEquals(item.roles, ['owner'])
+
+    def test_load_user_accounts_with_a_given_role_from_other_services(self):
+        with use_pw_cassette('accounts/load_user_accounts_with_a_given_role_from_other_services'):
+            user_accounts = list(self.user.accounts.all(
+                role='owner',
+                include_other_services=True
+            ))
+
+        self.assertEquals(len(user_accounts), 5)
+        # The first 2 items are accounts from the authenticated application
+        for item in user_accounts[:2]:
+            self.assertEquals(item.roles, ['owner'])
+
+        # The last 3 items are accounts from another application
+        for item in user_accounts[2:]:
+            self.assertTrue(isinstance(item, Account))
+
+    def test_load_expired_user_accounts_with_a_given_role_from_other_services(self):
+        with use_pw_cassette('accounts/load_expired_user_accounts_with_a_given_role_from_other_services'):
+            user_accounts = list(self.user.accounts.all(
+                role='owner',
+                include_other_services=True
+            ))
+
+        self.assertEquals(len(user_accounts), 5)
+        # The first 2 items are accounts from the authenticated application
+        for item in user_accounts[:2]:
+            self.assertEquals(item.roles, ['owner'])
+
+        # The last 3 items are accounts from another application
+        for item in user_accounts[2:]:
+            self.assertTrue(isinstance(item, Account))
