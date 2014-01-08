@@ -10,7 +10,48 @@ from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['IdentityAccountsTest']
 
-class IdentityAccountsTest(unittest.TestCase):
+class BaseServiceAccountCollectionsTest(unittest.TestCase):
+    collection = None
+    healty_account = 'a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba'
+    expired_account = '678abf63-eb1e-433d-9f0d-f46b44ab741d'
+    account_from_other_service = '1bcde52d-7da8-4800-bd59-dfea96933ce4'
+
+    def test_get_account(self):
+        with use_pw_cassette('accounts/get'):
+            account = self.collection.get(self.healty_account)
+
+        self.assertTrue(isinstance(account, ServiceAccount))
+
+    def test_get_expired_account(self):
+        with use_pw_cassette('accounts/get_expired_account'):
+            account = self.collection.get(self.expired_account)
+
+        self.assertTrue(isinstance(account, ServiceAccount))
+
+    def test_get_account_from_other_service_fails(self):
+        with use_pw_cassette('accounts/get_account_from_other_service'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.get,
+                self.account_from_other_service
+            )
+
+    def test_get_without_permissions(self):
+        with use_pw_cassette('accounts/application_without_permissions'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.get,
+                self.healty_account
+            )
+
+    def test_get_using_invalid_credentials(self):
+        with use_pw_cassette('accounts/using_invalid_credentials'):
+            self.collection._session.auth = ('invalid', 'credentials')
+            self.assertRaises(
+                requests.HTTPError, self.collection.get,
+                self.healty_account
+            )
+
+
+class IdentityAccountsTest(BaseServiceAccountCollectionsTest):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
@@ -18,6 +59,8 @@ class IdentityAccountsTest(unittest.TestCase):
 
         with use_pw_cassette('user/get_by_uuid'):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
+
+        self.collection = self.user.accounts
 
     def test_user_accounts_are_a_collection(self):
         self.assertTrue(isinstance(self.user.accounts, Collection))

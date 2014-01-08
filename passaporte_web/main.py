@@ -72,9 +72,9 @@ class ServiceAccount(BaseResource):
     def __new__(cls, *args, **kwargs):
         instance_keys = kwargs.keys()
         if instance_keys == ['name', 'uuid']:
-            instance = object.__new__(Account, **kwargs)
+            instance = Account(**kwargs)
         elif instance_keys == ['account_data']:
-            instance = object.__new__(Account, **kwargs['account_data'])
+            instance = Account(**kwargs['account_data'])
         else:
             instance =  BaseResource.__new__(cls, *args, **kwargs)
 
@@ -123,6 +123,18 @@ class IdentityAccounts(Collection):
             account = ServiceAccount(**item)
             account._session = self._session
             yield account
+
+    def get(self, identifier, append_slash=True):
+        url_pieces = urlsplit(self.url)
+        base_url = '{0.scheme}://{0.netloc}/organizations/api/accounts/'.format(url_pieces)
+
+        if append_slash:
+            url_template = '{0}{1}/'
+        else:
+            url_template = '{0}{1}'
+
+        url = url_template.format(base_url, identifier)
+        return self.resource_class.load(url, session=self._session)
 
 
 class ApplicationUsers(Collection):

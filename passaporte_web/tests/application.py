@@ -7,8 +7,9 @@ from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, ServiceAccount, Account, Identity
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
+from passaporte_web.tests.service_account import BaseServiceAccountCollectionsTest
 
-__all__ = ['ApplicationTest', 'ApplicationUsersTest']
+__all__ = ['ApplicationTest', 'ApplicationUsersTest', 'ApplicationAccountsTest']
 
 
 class ApplicationTest(unittest.TestCase):
@@ -23,29 +24,6 @@ class ApplicationTest(unittest.TestCase):
 
         self.assertTrue(hasattr(self.app, 'users'))
         self.assertTrue(isinstance(self.app.users, api_toolkit.Collection))
-
-    def test_application_accounts_are_a_collection(self):
-        with use_pw_cassette('application/account_list'):
-            app_accounts = list(self.app.accounts.all())
-
-        self.assertEquals(len(app_accounts), 26)
-        for item in app_accounts:
-            self.assertTrue(isinstance(item, ServiceAccount))
-
-    def test_application_accounts_cannot_be_deleted(self):
-        with use_pw_cassette('application/account_list'):
-            first_account = self.app.accounts.all().next()
-            first_account.load_options()
-
-        self.assertRaises(ValueError, first_account.delete)
-
-    def test_application_accounts_can_be_updated(self):
-        with use_pw_cassette('application/account_list'):
-            first_account = self.app.accounts.all().next()
-            first_account.load_options()
-
-        with use_pw_cassette('accounts/update_with_same_data'):
-            updated_account = first_account.save()
 
 
 class ApplicationUsersTest(unittest.TestCase):
@@ -249,3 +227,35 @@ class ApplicationUsersTest(unittest.TestCase):
         self.assertEquals(user._session.auth, (
             APP_CREDENTIALS['token'], APP_CREDENTIALS['secret']
         ))
+
+
+class ApplicationAccountsTest(BaseServiceAccountCollectionsTest):
+
+    def setUp(self):
+        with use_pw_cassette('application/collections_options'):
+            self.app = Application(**APP_CREDENTIALS)
+
+        self.collection = self.app.accounts
+
+    def test_application_accounts_are_a_collection(self):
+        with use_pw_cassette('application/account_list'):
+            app_accounts = list(self.app.accounts.all())
+
+        self.assertEquals(len(app_accounts), 26)
+        for item in app_accounts:
+            self.assertTrue(isinstance(item, ServiceAccount))
+
+    def test_application_accounts_cannot_be_deleted(self):
+        with use_pw_cassette('application/account_list'):
+            first_account = self.app.accounts.all().next()
+            first_account.load_options()
+
+        self.assertRaises(ValueError, first_account.delete)
+
+    def test_application_accounts_can_be_updated(self):
+        with use_pw_cassette('application/account_list'):
+            first_account = self.app.accounts.all().next()
+            first_account.load_options()
+
+        with use_pw_cassette('accounts/update_with_same_data'):
+            updated_account = first_account.save()
