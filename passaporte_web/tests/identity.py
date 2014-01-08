@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-from uuid import uuid4
 import unittest
 
 import requests
 from helpers import use_cassette as use_pw_cassette
 
-from passaporte_web.main import Application, Identity, Profile, Notification
+from passaporte_web.main import Application, Identity, Profile
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['IdentityTest']
@@ -91,38 +90,4 @@ class IdentityTest(unittest.TestCase):
     def test_application_must_have_permission_to_update_user_info(self):
         with use_pw_cassette('user/update_without_permissions'):
             self.assertRaises(requests.HTTPError, self.user.save)
-
-    def test_send_notification_returns_a_notification_destined_to_user(self):
-        with use_pw_cassette('user/send_notification'):
-            notification = self.user.send_notification('Notification de teste')
-        
-        self.assertTrue(isinstance(notification, Notification))
-        self.assertEqual(notification.destination_data['uuid'], self.user.uuid)
-        
-    def test_send_notification_destination_cant_be_changed(self):
-        test_uuid = str(uuid4())
-        with use_pw_cassette('user/send_notification'):
-            notification = self.user.send_notification(
-                'Notification de teste', destination=test_uuid
-            )
-        
-        self.assertTrue(isinstance(notification, Notification))
-        self.assertNotEqual(notification.destination_data['uuid'], test_uuid)
-        self.assertEqual(notification.destination_data['uuid'], self.user.uuid)
-
-    def test_send_notification_should_accept_optional_params(self):
-        test_url = 'http://example.com/' 
-        test_tags = ['test', 'optional', 'params']
-        test_schedule = '2142-01-01 00:00:00'
-
-        with use_pw_cassette('user/send_notification'):
-            notification = self.user.send_notification(
-                'Notification de teste', target_url=test_url, 
-                scheduled_to=test_schedule, tags=test_tags,
-            )
-
-        self.assertTrue(isinstance(notification, Notification))
-        self.assertEqual(notification.target_url, test_url)
-        self.assertEqual(notification.scheduled_to, test_schedule)
-        self.assertEqual(notification.tags, test_tags)
 

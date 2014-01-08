@@ -23,7 +23,7 @@ class BaseResource(Resource):
 
 
 class Notification(BaseResource):
-    pass
+    url_attribute_name = 'absolute_url'
 
 
 class Notifications(Collection):

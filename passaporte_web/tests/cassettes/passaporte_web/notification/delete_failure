@@ -1,0 +1,20 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: DELETE
+    path: /notifications/api/7a4f2232-53fd-4665-9f85-e5cb16920138/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '"Only scheduled notifications can be deleted via API"'}
+    headers: {allow: 'PUT, DELETE, HEAD, OPTIONS', connection: keep-alive, content-length: '53',
+      content-type: application/json, date: 'Wed, 08 Jan 2014 22:45:24 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    status: {code: 403, message: FORBIDDEN}
