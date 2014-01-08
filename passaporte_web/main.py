@@ -65,6 +65,18 @@ class Identity(BaseResource):
 
         return accounts
 
+    def send_notification(self, body, **kwargs):
+        kwargs.update({
+            'body': body,
+            'destination': self.uuid,
+        })
+
+        notifications = Notifications(
+            url=self.resource_data['notifications']['list'], session=self._session
+        )
+        notification = notifications.create(**kwargs)
+
+        return notification
 
 class Account(object):
     # Accounts can only be manipulated via ServiceAccounts
