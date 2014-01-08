@@ -69,9 +69,22 @@ class Account(object):
 
 class ServiceAccount(BaseResource):
 
+    def __new__(cls, *args, **kwargs):
+        instance_keys = kwargs.keys()
+        if instance_keys == ['name', 'uuid']:
+            instance = object.__new__(Account, **kwargs)
+        elif instance_keys == ['account_data']:
+            instance = object.__new__(Account, **kwargs['account_data'])
+        else:
+            instance =  BaseResource.__new__(cls, *args, **kwargs)
+
+        return instance
+
+
     def __init__(self, *args, **kwargs):
         super(ServiceAccount, self).__init__(*args, **kwargs)
 
+        self.account = Account(name=self.name, uuid=self.uuid)
         if self.expiration:
             # The api gives a datetime but expects a date
             self.expiration = self.expiration.split()[0]
@@ -108,12 +121,8 @@ class IdentityAccounts(Collection):
 
     def from_seed(self):
         for item in self._seed:
-            if 'url' in item:
-                account = ServiceAccount(**item)
-                account._session = self._session
-            else:
-                account = Account(**item)
-
+            account = ServiceAccount(**item)
+            account._session = self._session
             yield account
 
 

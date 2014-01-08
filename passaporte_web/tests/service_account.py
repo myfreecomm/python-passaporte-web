@@ -5,7 +5,7 @@ import requests
 from api_toolkit import Collection
 from helpers import use_cassette as use_pw_cassette
 
-from passaporte_web.main import Application, Identity, ServiceAccount
+from passaporte_web.main import Application, Identity, ServiceAccount, Account
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 
 __all__ = ['IdentityAccountsTest']
@@ -110,3 +110,14 @@ class IdentityAccountsTest(unittest.TestCase):
         self.assertEquals(len(user_accounts), 6)
         for item in user_accounts:
             self.assertTrue(isinstance(item, ServiceAccount))
+
+    def test_load_user_accounts_from_other_services(self):
+        with use_pw_cassette('accounts/load_user_accounts_from_other_services'):
+            user_accounts = list(self.user.accounts.all(include_other_services=True))
+
+        self.assertEquals(len(user_accounts), 5)
+        for item in user_accounts[:-1]:
+            self.assertTrue(isinstance(item, ServiceAccount))
+
+        # The last item is an account from another application
+        self.assertTrue(isinstance(user_accounts[-1], Account))
