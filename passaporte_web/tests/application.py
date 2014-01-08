@@ -259,3 +259,12 @@ class ApplicationAccountsTest(BaseServiceAccountCollectionsTest):
 
         with use_pw_cassette('accounts/update_with_same_data'):
             updated_account = first_account.save()
+
+    def test_application_accounts_cannot_be_created(self):
+        with use_pw_cassette('application/account_list'):
+            self.assertRaises(
+                ValueError, self.app.accounts.create,
+                name='Test Account',
+                plan_slug='unittest',
+                expiration=None,
+            )

@@ -51,7 +51,28 @@ class BaseServiceAccountCollectionsTest(unittest.TestCase):
             )
 
 
-class IdentityAccountsTest(BaseServiceAccountCollectionsTest):
+class BaseCreateServiceAccount(unittest.TestCase):
+
+    def test_create_account_by_name_without_permissions(self):
+        with use_pw_cassette('accounts/application_without_permissions'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                name='Test Account',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+    def test_create_account_by_uuid_without_permissions(self):
+        with use_pw_cassette('accounts/application_without_permissions'):
+            self.assertRaises(
+                requests.HTTPError, self.collection.create,
+                uuid='a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba',
+                plan_slug='unittest',
+                expiration=None,
+            )
+
+
+class IdentityAccountsTest(BaseServiceAccountCollectionsTest, BaseCreateServiceAccount):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
