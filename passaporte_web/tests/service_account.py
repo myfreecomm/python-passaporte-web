@@ -229,3 +229,13 @@ class IdentityAccountsTest(BaseServiceAccountCollectionsTest):
         # The last 3 items are accounts from another application
         for item in user_accounts[2:]:
             self.assertTrue(isinstance(item, Account))
+
+    def test_collection_url_is_right_after_success_getting_an_account(self):
+        expected_url = self.collection.url
+        self.test_get_account()
+        self.assertEquals(self.collection.url, expected_url)
+
+    def test_collection_url_is_right_after_failure_getting_an_account(self):
+        expected_url = self.collection.url
+        self.test_get_using_invalid_credentials()
+        self.assertEquals(self.collection.url, expected_url)

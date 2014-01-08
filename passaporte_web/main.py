@@ -124,17 +124,15 @@ class IdentityAccounts(Collection):
             account._session = self._session
             yield account
 
-    def get(self, identifier, append_slash=True):
-        url_pieces = urlsplit(self.url)
-        base_url = '{0.scheme}://{0.netloc}/organizations/api/accounts/'.format(url_pieces)
+    def get(self, *args, **kwargs):
+        try:
+            identity_account_url = self.url
+            url_pieces = urlsplit(self.url)
+            self.url = '{0.scheme}://{0.netloc}/organizations/api/accounts/'.format(url_pieces)
+            return super(IdentityAccounts, self).get(*args, **kwargs)
+        finally:
+            self.url = identity_account_url
 
-        if append_slash:
-            url_template = '{0}{1}/'
-        else:
-            url_template = '{0}{1}'
-
-        url = url_template.format(base_url, identifier)
-        return self.resource_class.load(url, session=self._session)
 
 
 class ApplicationUsers(Collection):
