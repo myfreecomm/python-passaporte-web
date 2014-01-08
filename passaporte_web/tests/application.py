@@ -7,7 +7,7 @@ from helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, ServiceAccount, Account, Identity
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
-from passaporte_web.tests.service_account import BaseServiceAccountCollectionsTest
+from passaporte_web.tests.service_account import CanGetServiceAccount
 
 __all__ = ['ApplicationTest', 'ApplicationUsersTest', 'ApplicationAccountsTest']
 
@@ -229,7 +229,34 @@ class ApplicationUsersTest(unittest.TestCase):
         ))
 
 
-class ApplicationAccountsTest(BaseServiceAccountCollectionsTest):
+class CanLoadServiceAccounts(unittest.TestCase):
+
+    def test_load_accounts(self):
+        # Expired accounts are also loaded
+        with use_pw_cassette('application/account_list'):
+            app_accounts = list(self.app.accounts.all())
+
+        self.assertEquals(len(app_accounts), 26)
+        for item in app_accounts:
+            self.assertTrue(isinstance(item, ServiceAccount))
+
+    def test_load_for_user_without_accounts(self):
+        with use_pw_cassette('application/empty_account_list'):
+            accounts = list(self.app.accounts.all())
+
+        self.assertEquals(len(accounts), 0)
+
+    def test_load_using_invalid_credentials(self):
+        with use_pw_cassette('accounts/using_invalid_credentials'):
+            self.app.accounts._session.auth = ('invalid', 'credentials')
+            self.assertRaises(requests.HTTPError, self.app.accounts.all().next)
+
+    def test_load_for_application_without_permissions(self):
+        with use_pw_cassette('accounts/application_without_permissions'):
+            self.assertRaises(requests.HTTPError, self.app.accounts.all().next)
+
+
+class ApplicationAccountsTest(CanGetServiceAccount, CanLoadServiceAccounts):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
@@ -238,12 +265,7 @@ class ApplicationAccountsTest(BaseServiceAccountCollectionsTest):
         self.collection = self.app.accounts
 
     def test_application_accounts_are_a_collection(self):
-        with use_pw_cassette('application/account_list'):
-            app_accounts = list(self.app.accounts.all())
-
-        self.assertEquals(len(app_accounts), 26)
-        for item in app_accounts:
-            self.assertTrue(isinstance(item, ServiceAccount))
+        self.assertTrue(isinstance(self.app.accounts, api_toolkit.Collection))
 
     def test_application_accounts_cannot_be_deleted(self):
         with use_pw_cassette('application/account_list'):
