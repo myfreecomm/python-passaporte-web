@@ -133,6 +133,14 @@ class IdentityAccounts(Collection):
         finally:
             self.url = identity_account_url
 
+    def create(self, *args, **kwargs):
+        try:
+            identity_account_url = self.url
+            url_pieces = urlsplit(self.url)
+            self.url = '{0.scheme}://{0.netloc}/organizations/api/accounts/'.format(url_pieces)
+            return super(IdentityAccounts, self).create(*args, **kwargs)
+        finally:
+            self.url = identity_account_url
 
 
 class ApplicationUsers(Collection):
