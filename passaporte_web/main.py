@@ -78,6 +78,7 @@ class Identity(BaseResource):
 
         return notification
 
+
 class Account(object):
     # Accounts can only be manipulated via ServiceAccounts
 
@@ -116,6 +117,11 @@ class ServiceAccount(BaseResource):
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
+
+    def send_notification(self, body, **kwargs):
+        kwargs['body'] = body
+    
+        return self.notifications.create(**kwargs)
 
 
 class ApplicationUsers(Collection):
