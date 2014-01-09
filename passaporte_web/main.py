@@ -72,6 +72,18 @@ class Identity(BaseResource):
         return notification
 
 
+class AccountMember(BaseResource):
+    url_attribute_name = 'membership_details_url'
+
+    @property
+    def url(self):
+        return super(AccountMember, self).url or self._response.url
+    
+
+class AccountMembers(Collection):
+    resource_class = AccountMember
+
+
 class Account(object):
     # Accounts can only be manipulated via ServiceAccounts
 
@@ -122,6 +134,9 @@ class ServiceAccount(BaseResource):
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
+
+        if 'add_member_url' in self.resource_data:
+            self.members = AccountMembers(url=self.add_member_url, session=self._session)
 
     def send_notification(self, body, **kwargs):
         kwargs['body'] = body

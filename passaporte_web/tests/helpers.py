@@ -19,6 +19,11 @@ TEST_USER = {
     'uuid': 'c3769912-baa9-4a0c-9856-395a706c7d57',
 }
 
+TEST_USER_2 = {
+    'email': 'identity_client_2@disposableinbox.com',
+    'uuid': 'bedcd531-c741-4d32-90d7-a7f7432f3f15',
+}
+
 APP_CREDENTIALS = {
     'host': 'http://sandbox.app.passaporteweb.com.br',
     'token': 'qxRSNcIdeA',

@@ -1,0 +1,22 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15", "roles": []}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Content-Length, '65']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.app.passaporteweb.com.br
+    method: POST
+    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '"Account a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba and service identity_client
+        are not related"'}
+    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '90',
+      content-type: application/json, date: 'Fri, 28 Jun 2013 19:02:06 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    status: {code: 404, message: NOT FOUND}
