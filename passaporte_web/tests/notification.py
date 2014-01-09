@@ -64,11 +64,11 @@ class ServiceAccountNotificationTest(unittest.TestCase):
         with use_pw_cassette('user/get_by_uuid'):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
-        self.service_account = self.user.accounts[0]
+        self.service_account = self.user.accounts.from_seed().next()
         self.service_account.load_options()
 
-    def test_send_notification_returns_a_notification_destined_to_user(self):
-        with use_pw_cassette('user/send_notification'):
+    def test_send_notification_returns_a_notification_destined_to_the_service_account(self):
+        with use_pw_cassette('accounts/send_notification'):
             notification = self.service_account.send_notification('Notification de teste')
         
         self.assertTrue(isinstance(notification, Notification))
@@ -79,7 +79,7 @@ class ServiceAccountNotificationTest(unittest.TestCase):
         test_tags = ['test', 'optional', 'params']
         test_schedule = '2142-01-01 00:00:00'
 
-        with use_pw_cassette('user/send_notification'):
+        with use_pw_cassette('accounts/send_notification'):
             notification = self.service_account.send_notification(
                 'Notification de teste', scheduled_to=test_schedule,
                 target_url=test_url, tags=test_tags,
