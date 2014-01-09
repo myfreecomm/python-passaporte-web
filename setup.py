@@ -27,7 +27,7 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name="python-passaporte-web",
-    version="0.0.1",
+    version="0.1",
     packages=["passaporte_web"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),
@@ -39,7 +39,7 @@ setuptools.setup(
     url="http://github.com/myfreecomm/python-passaporte-web",
     license="Apache 2.0",
     description="Python client app for Passaporte Web.",
-    long_description=open(join(dirname(__file__), "README.md")).read(),
+    long_description=open(join(dirname(__file__), "README.rst")).read(),
     keywords="python passaporteweb",
     classifiers=[
         'Intended Audience :: Developers',
