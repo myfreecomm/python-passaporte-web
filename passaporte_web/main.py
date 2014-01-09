@@ -13,9 +13,9 @@ class BaseResource(Resource):
         instance.load_options()
         return instance
 
-    def load_options(self):
-        super(BaseResource, self).load_options()
-        content = self.response.json()
+    def update_meta(self, response):
+        super(BaseResource, self).update_meta(response)
+        content = response.json()
         if 'fields' in content:
             self._meta['fields'] = content['fields'].keys()
         else:
