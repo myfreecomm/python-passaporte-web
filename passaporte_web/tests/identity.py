@@ -91,4 +91,3 @@ class IdentityTest(unittest.TestCase):
         with use_pw_cassette('user/update_without_permissions'):
             self.assertRaises(requests.HTTPError, self.user.save)
 
-

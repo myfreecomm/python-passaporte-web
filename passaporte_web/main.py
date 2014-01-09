@@ -23,7 +23,7 @@ class BaseResource(Resource):
 
 
 class Notification(BaseResource):
-    pass
+    url_attribute_name = 'absolute_url'
 
 
 class Notifications(Collection):
@@ -57,6 +57,19 @@ class Identity(BaseResource):
             url=user_accounts_url, session=self._session,
             resource_class=ServiceAccount, seed=self.resource_data.get('accounts', [])
         )
+
+    def send_notification(self, body, **kwargs):
+        kwargs.update({
+            'body': body,
+            'destination': self.uuid,
+        })
+
+        notifications = Notifications(
+            url=self.resource_data['notifications']['list'], session=self._session
+        )
+        notification = notifications.create(**kwargs)
+
+        return notification
 
 
 class Account(object):
@@ -109,6 +122,11 @@ class ServiceAccount(BaseResource):
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
+
+    def send_notification(self, body, **kwargs):
+        kwargs['body'] = body
+    
+        return self.notifications.create(**kwargs)
 
 
 class IdentityAccounts(Collection):
