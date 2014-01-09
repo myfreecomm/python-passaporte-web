@@ -9,6 +9,7 @@
       - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
       - !!python/tuple [content-type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /accounts/api/create/
@@ -39,6 +40,7 @@
       - !!python/tuple [cache-control, no-cache]
       - !!python/tuple [content-type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /accounts/api/create/
@@ -69,6 +71,7 @@
       - !!python/tuple [cache-control, no-cache]
       - !!python/tuple [content-type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /accounts/api/create/
@@ -98,6 +101,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '175']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /accounts/api/create/

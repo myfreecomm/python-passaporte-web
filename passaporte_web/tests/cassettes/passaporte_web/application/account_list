@@ -7,6 +7,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: GET
     path: /organizations/api/accounts/
@@ -64,6 +65,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: GET
     path: /organizations/api/accounts/?page=2
@@ -105,6 +107,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/859d3542-84d6-4909-b1bd-4f43c1312065/
@@ -131,6 +134,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/740d0256-9062-4824-ab96-efabcbe36ca1/
@@ -157,6 +161,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/f1e517a0-1c19-4bdb-9918-0a6b1a87fe35/
@@ -183,6 +188,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/87e1b431-18a8-456b-816e-fc1b5f6bdc06/
@@ -209,6 +215,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/d1073da3-10ac-4dad-b567-bb5fda8b6282/
@@ -235,6 +242,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/798fe092-5e19-425a-aa38-ea5f1fdcc89c/
@@ -261,6 +269,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/a5d53f18-da70-44ae-a441-44a59892a783/
@@ -287,6 +296,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/ddc71259-cc15-4f9c-b876-856d633771ab/
@@ -313,6 +323,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/cf334468-9789-4fe0-8c26-60c448d25792/
@@ -339,6 +350,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/bb9492da-c7e8-4c0d-847a-8e6c3820c238/
@@ -365,6 +377,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/65adbe0b-d2b7-4632-ae4d-42df61cc44c3/
@@ -391,6 +404,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/32129835-be72-418b-91f4-0ccf07fa5d08/
@@ -417,6 +431,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/97b321da-aedf-4045-9742-36c9ce2a9d22/
@@ -443,6 +458,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/cb201617-9b68-4829-9e7b-77474016dffd/
@@ -469,6 +485,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/58037074-546a-4d44-8d98-9e574d604189/
@@ -495,6 +512,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/cc0478ec-adb2-48bb-91dc-b8d1b202b70f/
@@ -521,6 +539,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/8f9d4a56-fab4-4f5f-b2a2-9d359c9ca2f0/
@@ -547,6 +566,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/427efc99-759b-4a0e-a600-315f653ab5e9/
@@ -573,6 +593,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/3c912541-345a-4b5a-bdb2-0cf96bbd9040/
@@ -599,6 +620,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/2aa06554-aaa7-4719-a10a-47534a77b050/
@@ -625,6 +647,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba/
@@ -651,6 +674,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/
@@ -677,6 +701,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/48aeff34-20c9-4039-bd97-d815020e8b44/
@@ -703,6 +728,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/7002ca9a-1d15-4005-b4e3-81adada2bc68/
@@ -729,6 +755,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
@@ -755,6 +782,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /organizations/api/accounts/678abf63-eb1e-433d-9f0d-f46b44ab741d/

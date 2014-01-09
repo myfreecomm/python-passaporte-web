@@ -7,6 +7,7 @@
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: PUT
     path: /organizations/api/accounts/859d3542-84d6-4909-b1bd-4f43c1312065/

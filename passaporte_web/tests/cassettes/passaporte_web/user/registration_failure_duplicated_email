@@ -8,6 +8,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '175']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /accounts/api/create/

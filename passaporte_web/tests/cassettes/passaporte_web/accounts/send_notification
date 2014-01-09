@@ -7,6 +7,7 @@
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
@@ -37,6 +38,7 @@
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Content-Length, '149']
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: POST
     path: /notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/

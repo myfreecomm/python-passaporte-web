@@ -1,7 +1,8 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
       - !!python/tuple [Accept, application/json]
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
@@ -15,6 +16,6 @@
   response:
     body: {string: '"Only scheduled notifications can be deleted via API"'}
     headers: {allow: 'PUT, DELETE, HEAD, OPTIONS', connection: keep-alive, content-length: '53',
-      content-type: application/json, date: 'Wed, 08 Jan 2014 22:45:24 GMT', p3p: CP="NON
+      content-type: application/json, date: 'Thu, 09 Jan 2014 20:45:28 GMT', p3p: CP="NON
         DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
     status: {code: 403, message: FORBIDDEN}
