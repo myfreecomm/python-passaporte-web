@@ -1,20 +1,42 @@
 # -*- coding: utf-8 -*-
 from httplib import urlsplit
-from api_toolkit import Collection, Resource
+from api_toolkit.entities import Collection, Resource, SessionFactory
 
 __all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application',]
 
 
-class BaseResource(Resource):
+class PWebSessionFactory(SessionFactory):
+
+    @classmethod
+    def get_auth(cls, **credentials):
+        auth = super(PWebSessionFactory, cls).get_auth(**credentials)
+        if auth == ('', ''):
+            auth = (
+                credentials.get('token', ''),
+                credentials.get('secret', '')
+            )
+        return auth
+
+    @classmethod
+    def safe_kwargs(cls, **kwargs):
+        kwargs = super(PWebSessionFactory, cls).safe_kwargs(**kwargs)
+        for item in ('token', 'secret'):
+            kwargs.pop(item, None)
+
+        return kwargs
+
+
+class PWebResource(Resource):
+    session_factory = PWebSessionFactory
 
     @classmethod
     def load(cls, url, **kwargs):
-        instance = super(BaseResource, cls).load(url, **kwargs)
+        instance = super(PWebResource, cls).load(url, **kwargs)
         instance.load_options()
         return instance
 
     def update_meta(self, response):
-        super(BaseResource, self).update_meta(response)
+        super(PWebResource, self).update_meta(response)
         content = response.json()
         if 'fields' in content:
             self._meta['fields'] = content['fields'].keys()
@@ -22,15 +44,19 @@ class BaseResource(Resource):
             self._meta['fields'] = None
 
 
-class Notification(BaseResource):
+class PWebCollection(Collection):
+    session_factory = PWebSessionFactory
+
+
+class Notification(PWebResource):
     url_attribute_name = 'absolute_url'
 
 
-class Notifications(Collection):
+class Notifications(PWebCollection):
     resource_class = Notification
 
 
-class Profile(BaseResource):
+class Profile(PWebResource):
 
     @property
     def url(self):
@@ -40,7 +66,7 @@ class Profile(BaseResource):
         return None
 
 
-class Identity(BaseResource):
+class Identity(PWebResource):
     url_attribute_name = 'update_info_url'
 
     @property
@@ -80,7 +106,7 @@ class Account(object):
         self.uuid = uuid
 
 
-class ServiceAccount(BaseResource):
+class ServiceAccount(PWebResource):
 
     def __new__(cls, *args, **kwargs):
         instance_keys = kwargs.keys()
@@ -89,7 +115,7 @@ class ServiceAccount(BaseResource):
         elif instance_keys == ['account_data']:
             instance = Account(**kwargs['account_data'])
         else:
-            instance =  BaseResource.__new__(cls, *args, **kwargs)
+            instance =  PWebResource.__new__(cls, *args, **kwargs)
 
         return instance
 
@@ -129,7 +155,7 @@ class ServiceAccount(BaseResource):
         return self.notifications.create(**kwargs)
 
 
-class IdentityAccounts(Collection):
+class IdentityAccounts(PWebCollection):
     _seed = []
 
     def __init__(self, url, **kwargs):
@@ -152,7 +178,7 @@ class IdentityAccounts(Collection):
             self.url = identity_account_url
 
 
-class ApplicationUsers(Collection):
+class ApplicationUsers(PWebCollection):
 
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
@@ -190,7 +216,7 @@ class ApplicationUsers(Collection):
         return user
 
 
-class Application(BaseResource):
+class Application(PWebResource):
 
     def __init__(self, host, token, secret):
         self.host = host
@@ -202,12 +228,12 @@ class Application(BaseResource):
     def prepare_collections(self, *args, **kwargs):
         self.accounts = Collection(
             url='{0}/organizations/api/accounts/'.format(self.host),
-            user=self.token, password=self.secret, resource_class=ServiceAccount
+            token=self.token, secret=self.secret, resource_class=ServiceAccount
         )
         self.accounts.load_options()
 
         self.users = ApplicationUsers(
             url='{0}/accounts/api/create/'.format(self.host),
-            user=self.token, password=self.secret, resource_class=Identity
+            token=self.token, secret=self.secret, resource_class=Identity
         )
         self.users.load_options()
