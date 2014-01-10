@@ -156,27 +156,18 @@ class ApplicationUsers(Collection):
 
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
-        base_url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
-        url_args = []
+        url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
 
-        if 'uuid' in kwargs:
-            url = '{0}{1}/'.format(base_url, kwargs['uuid'])
-        elif 'email' in kwargs:
-            url = base_url
-            url_args.append(('email', kwargs['email']))
-        else:
+        params = self.session_factory.safe_kwargs(**kwargs)
+        params['session'] = self._session
+
+        uuid = params.pop('uuid', None)
+        if uuid:
+            url = '{0}{1}/'.format(url, uuid)
+        elif 'email' not in params:
             raise TypeError('Either "uuid" or "email" must be given')
 
-        if 'include_expired_accounts' in kwargs:
-            url_args.append(('include_expired_accounts', 'true'))
-        if 'include_other_services' in kwargs:
-            url_args.append(('include_other_services', 'true'))
-            
-        if url_args:
-            qs_items = ['{0[0]}={0[1]}'.format(item) for item in url_args]
-            url = '{0}?{1}'.format(url, '&'.join(qs_items))
-
-        return self.resource_class.load(url, session=self._session)
+        return self.resource_class.load(url, **params)
 
     def authenticate(self, **kwargs):
         url_pieces = urlsplit(self.url)

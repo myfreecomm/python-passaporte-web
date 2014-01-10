@@ -1,47 +1,13 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+    - - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
-    host: sandbox.app.passaporteweb.com.br
-    method: GET
-    path: /accounts/api/identities/?email=identity_client@disposableinbox.com
-    port: 80
-    protocol: http
-  response:
-    body:
-      string: !!binary |
-        H4sIABBCx1IC/72WwW+bMBTG/5WI8xwgQICeVk077DDtsttUoWf7ubVkbMs2bbOq//tsklZp1kXJ
-        VOWGePD58/cz7/GUCel8GDSMmF0tsm8cdZBhk31aZAr2Cl+UjJV026PmgwUXNLpB44OP5eAmjKVp
-        kjw9zKp23fflilCAntRQMNJ3zZpUfQNtsWYtb9okJf0ALMh73JOwHAIOUgszTE4ltbsQ7FWee9Cc
-        msclWLu04D1Y4wI+IF0yMy6py4ExM+ngc7Ayl9uNSPT5KW7yZEebIIVkEKTRaVdP2SwYr4oUh/Th
-        HDtv1GZP2XOUeXEZpX49ZVaBHryabpOyR6XQzU52qX+NWiM6hovr7Wup6IzC+fXMPEQG2U2K7byo
-        jLsFLX/veXsNrxFlI1raEGjFOqZVNaRr2ooUHJqKV0WFZTenhY9WulkhrqwnpQ4TPJff34H9j6mA
-        ToMa5oO4c/VyLE9RSYwOsLDJBzP+Cwy8B2byH86l7gCFqGqyKlg8xUXVE8r7lvCubIpVgR2t64tz
-        OcPUES6nqLzDZdIyBPRhn8v3zeJHuEO3uLZWvX7Kb9gAH6X+YDjYAF2LlSBQIyV1VVLSsdhx+ros
-        Be+ga1f84nDOMHUEzikqR+CQbUPn+5B+xvuXa2hQs54yjKcLOkbqJm0Fy/jVQ0HXPRe8pnBxNmeY
-        OsLmFJXs+eZlaI8b4RBT5zqY27Fb3UuG25m3m5ybgW1H/v9O4J0oSaP8tBl8sPJ2XuIIck79oPqZ
-        S2+NB6pQ6uQqekiBWWeEVHjRn4fdmtHwHw95or9QCQAA
-    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
-      content-length: '603', content-type: application/json, date: 'Fri, 03 Jan 2014
-        23:04:48 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
-        Accept, Accept-Encoding'}
-    status: {code: 200, message: OK}
-- request: !!python/object:vcr.request.Request
-    body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.app.passaporteweb.com.br
     method: OPTIONS
     path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
@@ -57,5 +23,40 @@
     headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
       content-length: '214', content-type: application/json, date: 'Fri, 03 Jan 2014
         23:04:49 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding'}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: GET
+    path: /accounts/api/identities/?email=identity_client%40disposableinbox.com
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAOBC0FIC/72Wy27bMBBFf0XQurT1fmTVoOiii7ab7opAGJLDmIBECSQVxw3y7yVlu3Dc1JCC
+        1DtBI11e3UMN5ykUUhvbKOgwvAnCLxyVlXYXfgjCFk4Kn1rpKv62QcWbAbRVqBuFW+PKVo/oSuMo
+        uX+YpWVR13FCKEBNMogYqau8IGmdQxkVrOR56aWkaYBZ+YAnEgMHi41Uom9G3Xq1jbXDzXptQHHa
+        P65gGFYDGANDry1uka5Y362oXgNj/aisWcMg13L/IRLNeo6btbejeiuFZGBlr/xXPYWToLtKEp+H
+        NHaJnxdyk6nw2ckcbTqpn0/h0IJqTDvee2WDbYt6snKI/bPT6lAzDG73r/mi7lucXg/7rYMQ3vnc
+        lmXV63tQ8teJtz/p5SLORUlzAqUoXFxpTqq8TEnEIU95GqUYV1Nc+DhIPSm4ldXYtucRLgX4d2Bv
+        MWVRK2ibaSceXB335RwVz+gMCxuN7bt/gYHXwIzm3blkFaAQaUaSiLltHKU1obwuCa/iPEoirGiW
+        XZ3LAlMXuMxReYXLqKS1aOwpl6+74LvdoA5uh6H98y+/YAO8k+qd4WAOtBCJIJAhJVkaU1Ix13Lq
+        LI4Fr6AqE351OAtMXYAzR2UmnG/98W8JttJuAruRJvDFAB9dczX/v7nxDHgUFZyIIuauA3BBaIEF
+        qbKac9ccaBbXV+e0wNQFTnNULnAi+5OXn/L64e5f7+CBjNWUoesCUDGS5X7LYey6M0S0qLngGYWr
+        s1lg6gKbOSrh891xuup2QiP6E+ZswHKnyoNkuB9ODiPOrmH72eyto9JBlPiZa96wdLbyfq7BDuSU
+        +ln1I5dm6A3QFqXyrpwHH9igeyFbvOqUd1jTGf4N/fW9uPkKAAA=
+    headers: {allow: 'GET, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '665', content-type: application/json, date: 'Fri, 10 Jan 2014
+        18:58:40 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
         Accept, Accept-Encoding'}
     status: {code: 200, message: OK}
