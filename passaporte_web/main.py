@@ -19,7 +19,7 @@ class BaseResource(Resource):
         if 'fields' in content:
             self._meta['fields'] = content['fields'].keys()
         else:
-            self._meta['fields'] = None
+            self._meta['fields'] = self._meta.get('fields', None)
 
 
 class Notification(BaseResource):
@@ -74,6 +74,11 @@ class Identity(BaseResource):
 
 class AccountMember(BaseResource):
     url_attribute_name = 'membership_details_url'
+    
+    def __init__(self, *args, **kwargs):
+        super(AccountMember, self).__init__(*args, **kwargs)
+
+        self._meta['fields'] = ['roles']
 
     @property
     def url(self):
