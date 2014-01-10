@@ -64,8 +64,9 @@ class ServiceAccountNotificationTest(unittest.TestCase):
         with use_pw_cassette('user/get_by_uuid'):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
-        self.service_account = self.user.accounts.from_seed().next()
-        self.service_account.load_options()
+        with use_pw_cassette('accounts/load_user_accounts'):
+            self.service_account = self.user.accounts.from_seed().next()
+            self.service_account.load_options()
 
     def test_send_notification_returns_a_notification_destined_to_the_service_account(self):
         with use_pw_cassette('accounts/send_notification'):
