@@ -105,6 +105,10 @@ class Account(object):
         self.name = name
         self.uuid = uuid
 
+    @property
+    def resource_data(self):
+        return {'name': self.name, 'uuid': self.uuid}
+
 
 class ServiceAccount(PWebResource):
 
