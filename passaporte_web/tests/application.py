@@ -148,7 +148,7 @@ class ApplicationUsersTest(unittest.TestCase):
 
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
-        self.assertEquals(len(list(user.accounts.from_seed())), 4)
+        self.assertEquals(len(list(user.accounts.from_seed())), 5)
 
     def test_get_user_by_email_fails_when_email_is_not_registered(self):
         with use_pw_cassette('user/get_by_unknown_email'):
@@ -168,7 +168,7 @@ class ApplicationUsersTest(unittest.TestCase):
 
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
-        self.assertEquals(len(list(user.accounts.from_seed())), 6)
+        self.assertEquals(len(list(user.accounts.from_seed())), 8)
 
     def test_get_user_including_accounts_from_other_services(self):
         with use_pw_cassette('user/get_user_including_other_services'):
@@ -176,12 +176,12 @@ class ApplicationUsersTest(unittest.TestCase):
 
         self.assertTrue(isinstance(user, Identity))
         self.assertEquals(user.email, TEST_USER['email'])
-        self.assertEquals(len(list(user.accounts.from_seed())), 5)
+        self.assertEquals(len(list(user.accounts.from_seed())), 6)
 
         service_accounts = [item for item in user.accounts.from_seed() if isinstance(item, ServiceAccount)]
         external_accounts = [item for item in user.accounts.from_seed() if isinstance(item, Account)]
 
-        self.assertEquals(len(service_accounts), 4)
+        self.assertEquals(len(service_accounts), 5)
         self.assertEquals(len(external_accounts), 1)
 
     def test_get_user_by_uuid_fails_when_uuid_is_not_registered(self):
