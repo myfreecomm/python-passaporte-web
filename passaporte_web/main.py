@@ -144,7 +144,7 @@ class ServiceAccount(PWebResource):
 
     def prepare_collections(self, *args, **kwargs):
         if 'history_url' in self.resource_data:
-            self.history = Collection(url=self.history_url, session=self._session)
+            self.history = PWebCollection(url=self.history_url, session=self._session)
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
@@ -226,7 +226,7 @@ class Application(PWebResource):
         self.prepare_collections()
 
     def prepare_collections(self, *args, **kwargs):
-        self.accounts = Collection(
+        self.accounts = PWebCollection(
             url='{0}/organizations/api/accounts/'.format(self.host),
             token=self.token, secret=self.secret, resource_class=ServiceAccount
         )
