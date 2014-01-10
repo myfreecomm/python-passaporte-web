@@ -210,3 +210,32 @@ class AccountMemberTest(unittest.TestCase):
         with use_pw_cassette('accounts/members/save_for_expired_account'):
             self.account_member.roles = ['user']
             self.assertRaises(requests.HTTPError, self.account_member.save)
+
+    def test_succesful_delete(self):
+        with use_pw_cassette('accounts/members/load_account_member_with_user_role'):
+            account_member = AccountMember.load(
+                self.account_member.url, session=self.account_member._session
+            )
+
+        with use_pw_cassette('accounts/members/delete'):
+            account_member.delete()
+
+        with use_pw_cassette('accounts/members/deleted_member'):
+            self.assertRaises(
+                requests.HTTPError, AccountMember.load,
+                account_member.url, session=account_member._session
+            )
+
+    def test_delete_for_expired_account_fails(self):
+        with use_pw_cassette('accounts/members/delete_for_expired_account'):
+            self.assertRaises(requests.HTTPError, self.account_member.delete)
+    
+    def test_delete_for_owner_account_member_fails(self):
+        with use_pw_cassette('accounts/members/load_account_member_with_owner_role'):
+            account_member = AccountMember.load(
+                self.account_member.url, session=self.account_member._session
+            )
+
+        with use_pw_cassette('accounts/members/delete_for_owner_account_member'):
+            self.assertRaises(requests.HTTPError, account_member.delete)
+            

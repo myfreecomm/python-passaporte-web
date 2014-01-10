@@ -1,0 +1,21 @@
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.app.passaporteweb.com.br
+    method: DELETE
+    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/c3769912-baa9-4a0c-9856-395a706c7d57/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '"Service owner cannot be removed from members list"'}
+    headers: {allow: 'GET, PUT, DELETE, HEAD, OPTIONS', connection: keep-alive, content-length: '51',
+      content-type: application/json, date: 'Wed, 26 Jun 2013 21:46:46 GMT', p3p: CP="NON
+        DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    status: {code: 406, message: NOT ACCEPTABLE}
