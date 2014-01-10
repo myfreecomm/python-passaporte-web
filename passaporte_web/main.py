@@ -1,36 +1,62 @@
 # -*- coding: utf-8 -*-
 from httplib import urlsplit
-from api_toolkit import Collection, Resource
+from api_toolkit.entities import Collection, Resource, SessionFactory
 
 __all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application',]
 
 
-class BaseResource(Resource):
+class PWebSessionFactory(SessionFactory):
+
+    @classmethod
+    def get_auth(cls, **credentials):
+        auth = super(PWebSessionFactory, cls).get_auth(**credentials)
+        if auth == ('', ''):
+            auth = (
+                credentials.get('token', ''),
+                credentials.get('secret', '')
+            )
+        return auth
+
+    @classmethod
+    def safe_kwargs(cls, **kwargs):
+        kwargs = super(PWebSessionFactory, cls).safe_kwargs(**kwargs)
+        for item in ('token', 'secret'):
+            kwargs.pop(item, None)
+
+        return kwargs
+
+
+class PWebResource(Resource):
+    session_factory = PWebSessionFactory
 
     @classmethod
     def load(cls, url, **kwargs):
-        instance = super(BaseResource, cls).load(url, **kwargs)
+        instance = super(PWebResource, cls).load(url, **kwargs)
         instance.load_options()
         return instance
 
-    def load_options(self):
-        super(BaseResource, self).load_options()
-        content = self.response.json()
+    def update_meta(self, response):
+        super(PWebResource, self).update_meta(response)
+        content = response.json()
         if 'fields' in content:
             self._meta['fields'] = content['fields'].keys()
         else:
             self._meta['fields'] = self._meta.get('fields', None)
 
 
-class Notification(BaseResource):
+class PWebCollection(Collection):
+    session_factory = PWebSessionFactory
+
+
+class Notification(PWebResource):
     url_attribute_name = 'absolute_url'
 
 
-class Notifications(Collection):
+class Notifications(PWebCollection):
     resource_class = Notification
 
 
-class Profile(BaseResource):
+class Profile(PWebResource):
 
     @property
     def url(self):
@@ -40,7 +66,7 @@ class Profile(BaseResource):
         return None
 
 
-class Identity(BaseResource):
+class Identity(PWebResource):
     url_attribute_name = 'update_info_url'
 
     @property
@@ -72,7 +98,7 @@ class Identity(BaseResource):
         return notification
 
 
-class AccountMember(BaseResource):
+class AccountMember(PWebResource):
     url_attribute_name = 'membership_details_url'
     
     def __init__(self, *args, **kwargs):
@@ -85,7 +111,7 @@ class AccountMember(BaseResource):
         return super(AccountMember, self).url or self._response.url
     
 
-class AccountMembers(Collection):
+class AccountMembers(PWebCollection):
     resource_class = AccountMember
 
 
@@ -96,8 +122,12 @@ class Account(object):
         self.name = name
         self.uuid = uuid
 
+    @property
+    def resource_data(self):
+        return {'name': self.name, 'uuid': self.uuid}
 
-class ServiceAccount(BaseResource):
+
+class ServiceAccount(PWebResource):
 
     def __new__(cls, *args, **kwargs):
         instance_keys = kwargs.keys()
@@ -106,7 +136,7 @@ class ServiceAccount(BaseResource):
         elif instance_keys == ['account_data']:
             instance = Account(**kwargs['account_data'])
         else:
-            instance =  BaseResource.__new__(cls, *args, **kwargs)
+            instance =  PWebResource.__new__(cls, *args, **kwargs)
 
         return instance
 
@@ -135,7 +165,7 @@ class ServiceAccount(BaseResource):
 
     def prepare_collections(self, *args, **kwargs):
         if 'history_url' in self.resource_data:
-            self.history = Collection(url=self.history_url, session=self._session)
+            self.history = PWebCollection(url=self.history_url, session=self._session)
 
         if 'notifications_url' in self.resource_data:
             self.notifications = Notifications(url=self.notifications_url, session=self._session)
@@ -149,7 +179,7 @@ class ServiceAccount(BaseResource):
         return self.notifications.create(**kwargs)
 
 
-class IdentityAccounts(Collection):
+class IdentityAccounts(PWebCollection):
     _seed = []
 
     def __init__(self, url, **kwargs):
@@ -172,31 +202,22 @@ class IdentityAccounts(Collection):
             self.url = identity_account_url
 
 
-class ApplicationUsers(Collection):
+class ApplicationUsers(PWebCollection):
 
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
-        base_url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
-        url_args = []
+        url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
 
-        if 'uuid' in kwargs:
-            url = '{0}{1}/'.format(base_url, kwargs['uuid'])
-        elif 'email' in kwargs:
-            url = base_url
-            url_args.append(('email', kwargs['email']))
-        else:
+        params = self.session_factory.safe_kwargs(**kwargs)
+        params['session'] = self._session
+
+        uuid = params.pop('uuid', None)
+        if uuid:
+            url = '{0}{1}/'.format(url, uuid)
+        elif 'email' not in params:
             raise TypeError('Either "uuid" or "email" must be given')
 
-        if 'include_expired_accounts' in kwargs:
-            url_args.append(('include_expired_accounts', 'true'))
-        if 'include_other_services' in kwargs:
-            url_args.append(('include_other_services', 'true'))
-            
-        if url_args:
-            qs_items = ['{0[0]}={0[1]}'.format(item) for item in url_args]
-            url = '{0}?{1}'.format(url, '&'.join(qs_items))
-
-        return self.resource_class.load(url, session=self._session)
+        return self.resource_class.load(url, **params)
 
     def authenticate(self, **kwargs):
         url_pieces = urlsplit(self.url)
@@ -219,7 +240,7 @@ class ApplicationUsers(Collection):
         return user
 
 
-class Application(BaseResource):
+class Application(PWebResource):
 
     def __init__(self, host, token, secret):
         self.host = host
@@ -229,14 +250,14 @@ class Application(BaseResource):
         self.prepare_collections()
 
     def prepare_collections(self, *args, **kwargs):
-        self.accounts = Collection(
+        self.accounts = PWebCollection(
             url='{0}/organizations/api/accounts/'.format(self.host),
-            user=self.token, password=self.secret, resource_class=ServiceAccount
+            token=self.token, secret=self.secret, resource_class=ServiceAccount
         )
         self.accounts.load_options()
 
         self.users = ApplicationUsers(
             url='{0}/accounts/api/create/'.format(self.host),
-            user=self.token, password=self.secret, resource_class=Identity
+            token=self.token, secret=self.secret, resource_class=Identity
         )
         self.users.load_options()

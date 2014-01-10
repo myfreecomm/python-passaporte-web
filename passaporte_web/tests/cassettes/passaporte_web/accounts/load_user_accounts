@@ -35,6 +35,33 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
+      - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
+    host: sandbox.app.passaporteweb.com.br
+    method: OPTIONS
+    path: /organizations/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
+    port: 80
+    protocol: http
+  response:
+    body:
+      string: !!binary |
+        H4sIAAI10FIC/42QywoCMQxFf6VkbZm9O0H8AXUlIqWNEumLPpyBYf7dtCKIblyF3JN703SGK6E1
+        GdZihmiVv2Rbb9zBnuuuMVgJwClSUoWCb2irCh7I4QsvzKNKGVvICVSMlnSfHe6ZDYw/tUmO4yiv
+        ITlZk0Wvg8G+w1VbiIPK0KFRRf14nYUzawm9wfTnPvZ8SW1MxqYWnMrAZ5PvuV457LdjepBGsdE6
+        VF/EMfJrsBkMZp0ovn8ClidyOwwsQQEAAA==
+    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
+      content-length: '196', content-type: application/json, date: 'Fri, 10 Jan 2014
+        17:59:30 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
+        Accept, Accept-Encoding'}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
     - - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
       - !!python/tuple [Accept, application/json]

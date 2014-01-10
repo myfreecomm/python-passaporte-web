@@ -1,2 +1,2 @@
-api_toolkit==0.3.2
+api_toolkit==0.3.4
 vcrpy==0.5.0
