@@ -6,3 +6,4 @@ from identity import *
 from service_account import *
 from notification import *
 from members import *
+from history import *

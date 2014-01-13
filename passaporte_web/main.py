@@ -46,6 +46,7 @@ class PWebResource(Resource):
 
 class PWebCollection(Collection):
     session_factory = PWebSessionFactory
+    resource_class = PWebResource
 
 
 class Notification(PWebResource):
