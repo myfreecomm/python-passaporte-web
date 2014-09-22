@@ -1,25 +1,29 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"bio": null, "position": null, "language": null, "city": null, "gender":
       null, "company": null, "profession": null, "state": null, "country": null, "birth_date":
       null, "timezone": null, "nickname": null}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [Content-Length, '204']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['204']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: PUT
-    path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57//profile/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57//profile/
   response:
     body:
       string: !!binary |
         H4sIAAAAAAAAAwMAAAAAAAAAAAA=
-    headers: {connection: keep-alive, content-encoding: gzip, content-length: '20',
-      content-type: text/html; charset=utf-8, date: 'Mon, 24 Jun 2013 16:32:29 GMT',
-      p3p: CP="NON DSP COR CURa TIA", server: nginx/0.7.67}
+    headers:
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['20']
+      content-type: [text/html; charset=utf-8]
+      date: ['Mon, 24 Jun 2013 16:32:29 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/0.7.67]
     status: {code: 403, message: FORBIDDEN}
+version: 1

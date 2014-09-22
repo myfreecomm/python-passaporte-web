@@ -1,22 +1,27 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"identity": "00000000-0000-0000-0000-000000000000", "roles": []}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Content-Length, '65']
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['65']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: POST
-    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
   response:
-    body: {string: '"Identity with uuid=00000000-0000-0000-0000-000000000000 does
-        not exist"'}
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '72',
-      content-type: application/json, date: 'Wed, 26 Jun 2013 19:34:49 GMT', p3p: CP="NON
-        DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    body: {string: !!python/unicode '"Identity with uuid=00000000-0000-0000-0000-000000000000
+        does not exist"'}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-length: ['72']
+      content-type: [application/json]
+      date: ['Wed, 26 Jun 2013 19:34:49 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/0.7.67]
+      vary: ['Authenticate, Accept']
     status: {code: 404, message: NOT FOUND}
+version: 1

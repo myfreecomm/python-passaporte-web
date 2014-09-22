@@ -1,22 +1,28 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/
   response:
-    body: {string: '[]'}
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', cache-control: no-cache, connection: keep-alive,
-      content-length: '2', content-type: application/json, date: 'Mon, 24 Jun 2013
-        18:58:51 GMT', expires: 'Mon, 24 Jun 2013 18:58:50 GMT', p3p: CP="NON DSP
-        COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    body: {string: !!python/unicode '[]'}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      cache-control: [no-cache]
+      connection: [keep-alive]
+      content-length: ['2']
+      content-type: [application/json]
+      date: ['Mon, 24 Jun 2013 18:58:51 GMT']
+      expires: ['Mon, 24 Jun 2013 18:58:50 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/0.7.67]
+      vary: ['Authenticate, Accept']
     status: {code: 200, message: OK}
+version: 1

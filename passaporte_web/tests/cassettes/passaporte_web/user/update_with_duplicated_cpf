@@ -1,22 +1,28 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"first_name": "Identity", "last_name": "Client", "send_partner_news":
       true, "send_myfreecomm_news": true, "cpf": "11111111111"}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [Content-Length, '128']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Cache-Control, no-cache]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['128']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: PUT
-    path: /accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/
   response:
-    body: {string: '{"cpf": ["Esse n\u00famero de CPF j\u00e1 est\u00e1 cadastrado."]}'}
-    headers: {allow: 'GET, PUT, HEAD, OPTIONS', connection: keep-alive, content-length: '66',
-      content-type: application/json, date: 'Fri, 03 Jan 2014 19:15:09 GMT', p3p: CP="NON
-        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    body: {string: !!python/unicode '{"cpf": ["Esse n\u00famero de CPF j\u00e1 est\u00e1
+        cadastrado."]}'}
+    headers:
+      allow: ['GET, PUT, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-length: ['66']
+      content-type: [application/json]
+      date: ['Fri, 03 Jan 2014 19:15:09 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept']
     status: {code: 400, message: BAD REQUEST}
+version: 1

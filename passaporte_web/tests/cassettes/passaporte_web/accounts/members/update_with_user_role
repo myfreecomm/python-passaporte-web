@@ -1,18 +1,16 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"roles": ["user"]}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Content-Length, '19']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['19']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: PUT
-    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/c3769912-baa9-4a0c-9856-395a706c7d57/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/c3769912-baa9-4a0c-9856-395a706c7d57/
   response:
     body:
       string: !!binary |
@@ -20,8 +18,15 @@
         2XlzZ4NHxx7bDSOFNlAYozqxlpwPwoLBOLLbiqJNww+4aookyR6tEj24YNEJi68UHtyAEQ0DqWSW
         RV1xvj9kDQDPjpDLjJ/KKit4CXVeyVqVdYoiL0AGeuI3Ykk3Y+sQZWfMXwEaIJ0a1heEXO66KPJ9
         56HRSLbp3ru4y+b5A0diAjb+AAAA
-    headers: {allow: 'GET, PUT, DELETE, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
-      content-length: '192', content-type: application/json, date: 'Fri, 10 Jan 2014
-        19:13:55 GMT', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
-        Accept, Accept-Encoding'}
+    headers:
+      allow: ['GET, PUT, DELETE, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['192']
+      content-type: [application/json]
+      date: ['Fri, 10 Jan 2014 19:13:55 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept, Accept-Encoding']
     status: {code: 200, message: OK}
+version: 1

@@ -6,6 +6,14 @@ __all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application
 
 
 class PWebSessionFactory(SessionFactory):
+    default_headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Content-Length': '0',
+        'Cache-Control': 'no-cache',
+        'User-Agent': 'api_toolkit',
+        'Connection': 'keep-alive',
+    }
 
     @classmethod
     def get_auth(cls, **credentials):
@@ -63,7 +71,7 @@ class Profile(PWebResource):
     def url(self):
         if 'identity_info_url' in self.resource_data:
             return '{0.identity_info_url}/profile/'.format(self)
-        
+
         return None
 
 
@@ -101,7 +109,7 @@ class Identity(PWebResource):
 
 class AccountMember(PWebResource):
     url_attribute_name = 'membership_details_url'
-    
+
     def __init__(self, *args, **kwargs):
         super(AccountMember, self).__init__(*args, **kwargs)
 
@@ -110,7 +118,7 @@ class AccountMember(PWebResource):
     @property
     def url(self):
         return super(AccountMember, self).url or self._response.url
-    
+
 
 class AccountMembers(PWebCollection):
     resource_class = AccountMember
@@ -176,7 +184,7 @@ class ServiceAccount(PWebResource):
 
     def send_notification(self, body, **kwargs):
         kwargs['body'] = body
-    
+
         return self.notifications.create(**kwargs)
 
 

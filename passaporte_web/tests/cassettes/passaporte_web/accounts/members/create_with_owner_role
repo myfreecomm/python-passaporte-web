@@ -1,18 +1,16 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"roles": ["owner"], "identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15"}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Content-Length, '72']
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['72']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: POST
-    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
   response:
     body:
       string: !!binary |
@@ -21,9 +19,17 @@
         CppvdKPQaDMOHdeT6LgwQ8/n1kwcJjuJobeD7caG3exYig5zjX5m8RAwsZeqkcFQqByrfGKWUi4y
         gMet4NPVqmsOfhmPjqqzyRmDkQukUnEy4GGjl7RitdaVzLb8n3YbirIEXegdfxAXuj/ahKij938C
         0Nff3BKuT5D60kv2D4byEjMohxRU/Lit1+x8/gKLhWV5jQEAAA==
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', cache-control: no-cache, connection: keep-alive,
-      content-encoding: gzip, content-length: '265', content-type: application/json,
-      date: 'Wed, 26 Jun 2013 20:08:51 GMT', expires: 'Wed, 26 Jun 2013 20:08:50 GMT',
-      p3p: CP="NON DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept,
-        Accept-Encoding'}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      cache-control: [no-cache]
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['265']
+      content-type: [application/json]
+      date: ['Wed, 26 Jun 2013 20:08:51 GMT']
+      expires: ['Wed, 26 Jun 2013 20:08:50 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/0.7.67]
+      vary: ['Authenticate, Accept, Accept-Encoding']
     status: {code: 200, message: OK}
+version: 1

@@ -1,18 +1,16 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"body": "Notification de teste"}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Content-Length, '33']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['33']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: POST
-    path: /notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
   response:
     body:
       string: !!binary |
@@ -22,28 +20,32 @@
         DcY7xseSj53gFLqxpQ0kQ7yraaGA16ouaix37B6vLJl18oAqzKgGb5PBqigbWpS02GVV2fOmr/ZX
         GhqF66DAQ2SdyRbHhHmOoIEjJu2LQuO1P2VPs47TVTeHKUH6BxrkBl0ipmLl2lwj/l18d092ncDo
         r3/3dHvfewTkJu5z9HDEVWL2uP1JLpdvZcrW1mECAAA=
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
-      content-length: '317', content-type: application/json, date: 'Wed, 08 Jan 2014
-        23:54:29 GMT', location: 'http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/b9fbc735-8365-416e-957c-81cb3b562da6/',
-      p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept,
-        Accept-Encoding', x-throttle: status=SUCCESS; next=0.20 sec}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['317']
+      content-type: [application/json]
+      date: ['Wed, 08 Jan 2014 23:54:29 GMT']
+      location: ['http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/b9fbc735-8365-416e-957c-81cb3b562da6/']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept, Accept-Encoding']
+      x-throttle: [status=SUCCESS; next=0.20 sec]
     status: {code: 201, message: CREATED}
-- request: !!python/object:vcr.request.Request
+- request:
     body: '{"body": "Notification de teste", "scheduled_to": "2142-01-01 00:00:00",
       "target_url": "http://example.com/", "tags": ["test", "optional", "params"]}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Content-Length, '149']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['149']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: POST
-    path: /notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/
   response:
     body:
       string: !!binary |
@@ -53,9 +55,17 @@
         wHtwdg70TX0ylPdzYe7S+AKcKkBKu5jgi2Yom2HXNxx2w5ZvoG54dFVzgRBN16Kmsi0eybEG9/JA
         uGjCLthksCo3FRdlrEyI/VorjQzS3CEEiKwzu8Yxi9YRNDBRmn1HMkGFU/aqVezWOb2MCVI3qJNX
         6BIxjKdTZo34d/HDd7LzCEb9/PtO93//yAC7i/sWPUw0S8perprscvkFYj8WFJACAAA=
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
-      content-length: '335', content-type: application/json, date: 'Thu, 09 Jan 2014
-        00:21:05 GMT', location: 'http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/dd802d00-53da-4d2d-96bc-c82156df857e/',
-      p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept,
-        Accept-Encoding', x-throttle: status=SUCCESS; next=0.20 sec}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['335']
+      content-type: [application/json]
+      date: ['Thu, 09 Jan 2014 00:21:05 GMT']
+      location: ['http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/dd802d00-53da-4d2d-96bc-c82156df857e/']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept, Accept-Encoding']
+      x-throttle: [status=SUCCESS; next=0.20 sec]
     status: {code: 201, message: CREATED}
+version: 1

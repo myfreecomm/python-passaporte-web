@@ -1,22 +1,27 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: '{"identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15", "roles": []}'
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Content-Length, '65']
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['65']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: POST
-    path: /organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/e5ab6f2f-a4eb-431b-8c12-9411fd8a872d/members/
   response:
-    body: {string: '"Identity with uuid=c3769912-baa9-4a0c-9856-395a706c7d57 is already
-        in members list of service identity_client at account a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba"'}
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '159',
-      content-type: application/json, date: 'Wed, 26 Jun 2013 19:41:25 GMT', p3p: CP="NON
-        DSP COR CURa TIA", server: nginx/0.7.67, vary: 'Authenticate, Accept'}
+    body: {string: !!python/unicode '"Identity with uuid=c3769912-baa9-4a0c-9856-395a706c7d57
+        is already in members list of service identity_client at account a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba"'}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-length: ['159']
+      content-type: [application/json]
+      date: ['Wed, 26 Jun 2013 19:41:25 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/0.7.67]
+      vary: ['Authenticate, Accept']
     status: {code: 409, message: CONFLICT}
+version: 1

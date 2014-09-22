@@ -1,18 +1,16 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==']
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first
   response:
     body:
       string: !!binary |
@@ -25,10 +23,19 @@
         UiFlVeAGc8uJuBXESrSWIMY7LO+IXQ0xFlotnc43g4I8NuE8UgRbFBQNwNoWyyBvBbESrSWIsY7i
         O2JXQ8zqYJ3cDqaCI0YEIM1lfoHyy0MtF603N3OLlWgtQ6zVd8SuhhjH0gH3LH9tSJYQtEQq0Dy2
         VjijMdGE2VtBrERrAWKM3P9if4XY4wemUO3f7wsAAA==
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-encoding: gzip,
-      content-length: '487', content-type: application/json, date: 'Wed, 08 Jan 2014
-        23:59:18 GMT', link: '<http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first&page=1>;
-        rel=last, <http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first&page=1>;
-        rel=first', p3p: CP="NON DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate,
-        Accept, Accept-Encoding', x-throttle: status=SUCCESS; next=0.20 sec}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['487']
+      content-type: [application/json]
+      date: ['Wed, 08 Jan 2014 23:59:18 GMT']
+      link: ['<http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first&page=1>;
+          rel=last, <http://sandbox.app.passaporteweb.com.br/notifications/api/accounts/5f15f7b5-a7f6-4a35-8573-0da53d303e18/?ordering=newest-first&page=1>;
+          rel=first']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept, Accept-Encoding']
+      x-throttle: [status=SUCCESS; next=0.20 sec]
     status: {code: 200, message: OK}
+version: 1

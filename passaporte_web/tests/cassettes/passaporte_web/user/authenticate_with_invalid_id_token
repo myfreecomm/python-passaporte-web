@@ -1,21 +1,27 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OmludmFsaWRfaWRfdG9rZW4=']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
-    host: sandbox.app.passaporteweb.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic OmludmFsaWRfaWRfdG9rZW4=]
+      Cache-Control: [no-cache]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /accounts/api/auth/
-    port: 80
-    protocol: http
+    uri: http://sandbox.app.passaporteweb.com.br/accounts/api/auth/
   response:
-    body: {string: '{"detail": "You need to login or otherwise authenticate the request."}'}
-    headers: {allow: 'GET, POST, HEAD, OPTIONS', connection: keep-alive, content-length: '70',
-      content-type: application/json, date: 'Fri, 03 Jan 2014 19:45:36 GMT', p3p: CP="NON
-        DSP COR CURa TIA", server: nginx/1.4.4, vary: 'Authenticate, Accept'}
+    body: {string: !!python/unicode '{"detail": "You need to login or otherwise authenticate
+        the request."}'}
+    headers:
+      allow: ['GET, POST, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-length: ['70']
+      content-type: [application/json]
+      date: ['Fri, 03 Jan 2014 19:45:36 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      server: [nginx/1.4.4]
+      vary: ['Authenticate, Accept']
     status: {code: 401, message: UNAUTHORIZED}
+version: 1
