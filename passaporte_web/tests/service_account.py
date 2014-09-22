@@ -296,13 +296,13 @@ class CanLoadServiceAccounts(unittest.TestCase):
                 include_other_services=True
             ))
 
-        self.assertEquals(len(user_accounts), 6)
+        self.assertEquals(len(user_accounts), 5)
         # The first 3 items are accounts from the authenticated application
-        for item in user_accounts[:3]:
+        for item in user_accounts[:2]:
             self.assertEquals(item.roles, ['owner'])
 
-        # The last 3 items are accounts from another application
-        for item in user_accounts[3:]:
+        # The last 2 items are accounts from another application
+        for item in user_accounts[2:]:
             self.assertTrue(isinstance(item, Account))
 
     def test_load_expired_user_accounts_with_a_given_role_from_other_services(self):
@@ -312,13 +312,13 @@ class CanLoadServiceAccounts(unittest.TestCase):
                 include_other_services=True
             ))
 
-        self.assertEquals(len(user_accounts), 6)
+        self.assertEquals(len(user_accounts), 5)
         # The first 3 items are accounts from the authenticated application
-        for item in user_accounts[:3]:
+        for item in user_accounts[:2]:
             self.assertEquals(item.roles, ['owner'])
 
-        # The last 3 items are accounts from another application
-        for item in user_accounts[3:]:
+        # The last 2 items are accounts from another application
+        for item in user_accounts[2:]:
             self.assertTrue(isinstance(item, Account))
 
 
