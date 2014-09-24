@@ -1,7 +1,7 @@
 interactions:
 - request:
-    body: '{"first_name": "Identity", "last_name": "Client", "send_partner_news":
-      true, "send_myfreecomm_news": true, "cpf": "11111111111"}'
+    body: '{"cpf": "11111111111", "first_name": "Identity", "last_name": "Client",
+      "send_myfreecomm_news": true, "send_partner_news": true}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -21,9 +21,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['66']
       content-type: [application/json]
-      date: ['Fri, 03 Jan 2014 19:15:09 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:45 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 version: 1

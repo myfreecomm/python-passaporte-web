@@ -1,7 +1,7 @@
 interactions:
 - request:
-    body: '{"first_name": "Identity", "last_name": "Client", "send_partner_news":
-      true, "send_myfreecomm_news": true}'
+    body: '{"first_name": "Identity", "last_name": "Client", "send_myfreecomm_news":
+      true, "send_partner_news": true}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -16,26 +16,27 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAHYHx1IC/71WQW7bMBD8iqFzaUmWZEk5NSh66KHopbciEJbkMiFAkQRJJXGD/L2k7ASOkRZy
-        2+QmcK3Z4cxqxw+ZkM6HQcOI2cUq+8JRBxl22YdVpuCo8EnJWEnHHjUfLLig0Q0a73wsBzdhLE2T
-        5OnHrGq3fV9uCAXoSQ0FI33XbEnVN9AWW9bypk1Q0g/AgrzFIwjLIeAgtTDD5FRCuwnBXuS5B82p
-        uV+DtWsL3oM1LuAd0jUz45q6HBgzkw4+Bytzub+IRJ8vYZMnOtoEKSSDII1Ot3rIZsD4VCQ5pA/n
-        0HmBNnPKHiPME8sI9eMhswr04NV0nZA9KoVuZnJQ/XPEGtExXF3uX0tFZxTOr2fmLnqQXSXZzpPK
-        uGvQ8ucRt2fxGlE2oqUNgVZso1pVQ7qmrUjBoal4VVRYdq+q9Q/CnN8c7610M0LsrCel5rOAToMa
-        5iE8HD6N5BLk5M+JJWzywYy/MwVeM2Xy/92TugMUoqrJpmBxgouqJ5T3LeFd2RSbAjta12/myeLm
-        Z3uyBPkVTyYtQ0Afjj35ult9CzfoVpfWqmcBXvgCfJT6PxuDDdCt2AgCNVJSVyUlHYubpq/LUvAO
-        unbD38yYxc3PNmYJ8h+MIfslzo8N+h7P32+JQc16yjBOFnSM1E26Cpbxa4eCbnsueE3hzXxZ3Pxs
-        X5YgZ49XTyE97oRDTNvqJKfjhrqVDPcZd0jK3cD2Ef+3iXsAJSm6l2XuSed9PuIIch6Dk+pHLr01
-        HqhCqROryCGJaJ0RUuG7/lk49IyEfwFVa071QAkAAA==
+        H4sIACQwI1QC/71VTW/iMBD9K1HOmCTkA9LTrlZ72Mue9raqrIk9AUuObdlOKa3639cO0KVUqqCq
+        QAgFj/3mzXvOzHNqBPOjxfQuSTfeG3eXZRbdnEk9cqHA7uZMD5kB58Bo65FsscvEAGvMRiM18IxR
+        vxmHbsYpxx5G6Sk8gAc729BisZpt42/2NjQ3ap3OkrQX1nmqYJjy/+KovPC7GJFwEvghRYjEZYeK
+        UwPWK7RU4daFsLcjhtA4Ch43s3LZtG2xIB1ASyrIGWlXdUPKtoZl3rAlr5f7DGo9hjLimfhfOArM
+        iwc8gTQcPFKhek1HK081cqB4px/nYMz8vzhBmyjXvLMZMKZH5V0GRmRiX5lAl11CL4t8lPaiFwy8
+        0CqW+ZxOgOGpiuyF81fxeQM3kUpfAs6RZsD6+5yaIAp1clxHaIdSop2oHHz4GbAGtAyT7/tjMWi1
+        xOl4qrfBlfQ+CnelWNquQYmnE3Kv8tV9UffLriaw7JugV1mTVb0sSc6hLnmZl1isJr3w0Qg7IYTU
+        apTyXMOrLXwv2WdYebQKJJ0u54HW8apeghJdOjNmVMJ7dP7Umt86OZBLtsJvEr8RLonBBB/DVXE3
+        cIpXwPO84aRvCh6q4T3pGmzIqmo5D4V2VdHe3qkrWH3g1CUoHzhF9p2Enzr2J6zf8D2CirUdw4os
+        YMVIVS96AliEuwZ517S851UH791J2/AhoVuVRZLnd9P3XXP6SruuoPmBXZegpC/3x4Ey7HqLGJvb
+        2UxxaB8Ew337PTTxHWX7cfTpaXBAJXGuXDYPzlLvW7cXAz5p9TrAcAAx+XC2+xsXzmgHnUShIsvA
+        Ke43VvdC4m0n2yHpZGHgTmMRNKbZastvSyWkJzE9OaYPsv4DopJ77BAJAAA=
     headers:
       allow: ['GET, PUT, HEAD, OPTIONS']
       connection: [keep-alive]
       content-encoding: [gzip]
-      content-length: ['601']
+      content-length: ['671']
       content-type: [application/json]
-      date: ['Fri, 03 Jan 2014 18:54:46 GMT']
+      date: ['Wed, 24 Sep 2014 20:57:08 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept, Accept-Encoding']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
     status: {code: 200, message: OK}
 version: 1

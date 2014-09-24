@@ -1,7 +1,7 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "name": "Back to the future", "expiration": "Primeiro
-      de maio de 2010"}'
+    body: '{"expiration": "Primeiro de maio de 2010", "name": "Back to the future",
+      "plan_slug": "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -21,9 +21,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['67']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:20:43 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:35 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 version: 1

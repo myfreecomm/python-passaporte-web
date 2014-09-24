@@ -108,8 +108,9 @@ interactions:
       vary: [Accept-Encoding]
     status: {code: 200, message: OK}
 - request:
-    body: '{"first_name": "Myfc ID", "last_name": "Clients", "tos": true, "password2":
-      "*SudN7%r$MiYRa!E", "password": "*SudN7%r$MiYRa!E", "email": "identity_client@disposableinbox.com"}'
+    body: '{"email": "identity_client@disposableinbox.com", "first_name": "Myfc ID",
+      "last_name": "Clients", "password": "*SudN7%r$MiYRa!E", "password2": "*SudN7%r$MiYRa!E",
+      "tos": true}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

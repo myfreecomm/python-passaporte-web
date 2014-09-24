@@ -78,7 +78,7 @@ interactions:
       server: [nginx/0.7.67]
     status: {code: 403, message: FORBIDDEN}
 - request:
-    body: '{"plan_slug": "unittest", "name": "Test Account", "expiration": null}'
+    body: '{"expiration": null, "name": "Test Account", "plan_slug": "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -104,8 +104,7 @@ interactions:
       vary: ['Authenticate, Accept']
     status: {code: 403, message: FORBIDDEN}
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba",
-      "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

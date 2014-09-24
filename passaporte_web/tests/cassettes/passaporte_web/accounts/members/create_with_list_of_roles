@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"roles": ["[0, 1, 2, 3, 4]", "\u00e7\u00e3\u00e9\u00ea\u00ae\u00a9\u00fe\u00ab\u00bb",
-      "test-user", "668", "user", "{''a'': ''a''}", "owner", "12345"], "identity":
-      "bedcd531-c741-4d32-90d7-a7f7432f3f15"}'
+    body: '{"identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15", "roles": ["[0, 1,
+      2, 3, 4]", "\u00e7\u00e3\u00e9\u00ea\u00ae\u00a9\u00fe\u00ab\u00bb", "test-user",
+      "668", "user", "{''a'': ''a''}", "owner", "12345"]}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

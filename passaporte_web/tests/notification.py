@@ -61,7 +61,7 @@ class ServiceAccountNotificationTest(unittest.TestCase):
         with use_pw_cassette('application/collections_options'):
             self.app = Application(**APP_CREDENTIALS)
 
-        with use_pw_cassette('user/get_by_uuid', record_mode="new_episodes"):
+        with use_pw_cassette('user/get_by_uuid'):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
         with use_pw_cassette('accounts/load_user_accounts'):

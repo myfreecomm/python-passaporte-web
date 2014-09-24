@@ -10,39 +10,8 @@ interactions:
       Content-Length: ['0']
       Content-Type: [application/json]
       User-Agent: [api_toolkit]
-    method: OPTIONS
-    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/aafb1afd-3af2-4a4b-8d53-a5f381268777/
-  response:
-    body:
-      string: !!binary |
-        H4sIAODRzVIC/42QwQrCMAyGX2Xk7Njdq+JpeBA8iUhcM410bWkzpojvblunDL14K/+X/yvJHVom
-        rQLMizscrbrFByzO6FcphlkBoTmT6jWpg9gElyj0gYqCsEFha36KgqekhZqDTEJ/Ijn0Xie03dQv
-        8ojIoQ+UGjtA5zQ3WVtdQnRHPM2u5TAMZWt9V0YTmcYqyvqu18JRJFWGCgV/up2Gfcw8GUX+z/9i
-        5ytKY6XLK9FVKqeRTfYa7CjttrbC7Tg9nqrx7N6ngscTxilEz3sBAAA=
-    headers:
-      allow: ['PUT, DELETE, HEAD, OPTIONS']
-      connection: [keep-alive]
-      content-encoding: [gzip]
-      content-length: ['212']
-      content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 22:32:00 GMT']
-      p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept, Accept-Encoding']
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: [application/json]
-      Accept-Encoding: ['gzip, deflate']
-      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
-      Cache-Control: [no-cache]
-      Connection: [keep-alive]
-      Content-Length: ['0']
-      Content-Type: [application/json]
-      User-Agent: [api_toolkit]
     method: GET
-    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/aafb1afd-3af2-4a4b-8d53-a5f381268777/
+    uri: https://sandbox.app.passaporteweb.com.br:443/notifications/api/6d2e371f-388b-4a29-8fbf-3d50f12a1601/
   response:
     body: {string: !!python/unicode '{"detail": "Method ''GET'' not allowed on this
         resource."}'}
@@ -51,9 +20,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['56']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 22:39:44 GMT']
+      date: ['Wed, 24 Sep 2014 20:52:37 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 405, message: METHOD NOT ALLOWED}
 version: 1

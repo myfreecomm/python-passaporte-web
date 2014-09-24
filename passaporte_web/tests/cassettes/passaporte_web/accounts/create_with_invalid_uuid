@@ -1,7 +1,6 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "00000000-0000-0000-0000-000000000000",
-      "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": "00000000-0000-0000-0000-000000000000"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -21,14 +20,14 @@ interactions:
       connection: [keep-alive]
       content-length: ['122']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:08:33 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:36 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "This is clearly not an UUID", "expiration":
-      null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": "This is clearly
+      not an UUID"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -48,9 +47,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['114']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:25:50 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:36 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 version: 1

@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"roles": ["user"], "identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15"}'
+    body: '{"identity": "bedcd531-c741-4d32-90d7-a7f7432f3f15", "roles": ["user"]}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

@@ -1,6 +1,7 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "name": "Back to the future", "expiration": "2010-05-01"}'
+    body: '{"expiration": "2010-05-01", "name": "Back to the future", "plan_slug":
+      "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -15,23 +16,23 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAI3czVIC/8WTz06EMBDGX4X0bLdlYRfhqCefwRgybQe3EdqmHdTV+O4CYuKfi3pYEw5N5ut8
-        v2+mPLODTeTjsR1jz5qMHYhCI0QCZ5R/3EAImwApQfCR8AHVRvtho6Lw8RacfQKy3iUBwQrQ2o+O
-        kihV2WkjJddaFbzESnHIu46XeVkUVb0vQOVitRXsLGMDDgpjOtjQGiSwfTo1zUogdFHt6zrfcgVQ
-        8xKk5vX5bs+LegeV3OvK7KoFOfTg2tSPtzPl6CwRJpoLYzBAaFp1/A0/mMG6iTv0Vq8hrEFHlo6t
-        7u10Wlyj7zFNfa+Zf3AY2c1seNpJfcwINDtvZV5ymXN5nm3zJq+aophF+BhsXGxWkeRyN+kyKZvl
-        m0XOk+3eI/926Z8u/zFKwnhvNbZTIJi8n5mDAWeIq3X82eUy/kW7rvvLZtjLVFudv/e5AH2Xkc/o
-        gFk30hhxmeBozVz9Cedbf2Pat0f6X78Ge3kFxLQYDywEAAA=
+        H4sIACo1I1QC/8VTwY7bIBD9FYtzCTgmcZxje+o3VJU1wHiDagOCcZM0yr/X9nql3e2l6WErzQFp
+        HvPemwc3dnKZQrq2Y+rZsWAnopiPQmTwVofLBmLcRMgZYkiEZ9QbE4aNTiKkJ/DuF5ALPguIToAx
+        YfSUhdKqM1ZKboyuuMJacyi7jqtSVVXd7CvQpVh5BftUsAEHjSmfXGwtErg+f7icVYIwVb1vmnLL
+        NUDDFUjDm8Nuz6tmB7Xcm9ru6kVz7MG3uR+fZpmjd0SYaW6M0QKhbfX1IQNgB+cn4bF3ZnXhLHpy
+        dG1N76bTQptCj3ka/I2Fs8fEvs+MH7yr1y6BZuqtLBWXDd+qojwcp6rUDMJLdGmhWUGSyx2XZSHl
+        cakZ5AO57sXzw7m/uf2PXjKmn85gOzmCifzGPAw4q/i6BlB8WQJYsGvi77Jh96m3Mv855zOYHwWF
+        gk5YdCONCZcVjs7O3b/R+Tzf2vb5nf6378HuvwGxMIAhMgQAAA==
     headers:
       allow: ['GET, POST, HEAD, OPTIONS']
       connection: [keep-alive]
       content-encoding: [gzip]
-      content-length: ['377']
+      content-length: ['379']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:17:33 GMT']
-      location: ['http://sandbox.app.passaporteweb.com.br/organizations/api/accounts/4b4fcd00-ccb3-4e7b-a1ff-414337963ab1/']
+      date: ['Wed, 24 Sep 2014 21:18:34 GMT']
+      location: ['https://sandbox.app.passaporteweb.com.br/organizations/api/accounts/4b4fcd00-ccb3-4e7b-a1ff-414337963ab1/']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept, Accept-Encoding']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
     status: {code: 201, message: CREATED}
 version: 1

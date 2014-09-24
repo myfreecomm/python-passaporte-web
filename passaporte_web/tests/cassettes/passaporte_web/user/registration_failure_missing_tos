@@ -1,7 +1,7 @@
 interactions:
 - request:
-    body: '{"password": "*SudN7%r$MiYRa!E", "first_name": "Myfc ID", "last_name":
-      "Clients", "email": "identity_client@disposableinbox.com", "password2": "*SudN7%r$MiYRa!E"}'
+    body: '{"email": "identity_client@disposableinbox.com", "first_name": "Myfc ID",
+      "last_name": "Clients", "password": "*SudN7%r$MiYRa!E", "password2": "*SudN7%r$MiYRa!E"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

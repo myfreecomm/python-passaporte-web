@@ -36,7 +36,7 @@ interactions:
     status: {code: 201, message: CREATED}
 - request:
     body: '{"body": "Notification de teste", "scheduled_to": "2142-01-01 00:00:00",
-      "target_url": "http://example.com/", "tags": ["test", "optional", "params"]}'
+      "tags": ["test", "optional", "params"], "target_url": "http://example.com/"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

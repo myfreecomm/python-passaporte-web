@@ -1,7 +1,6 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "e5ab6f2f-a4eb-431b-8c12-9411fd8a872d",
-      "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": "e5ab6f2f-a4eb-431b-8c12-9411fd8a872d"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "name": "Test Account", "expiration": null}'
+    body: '{"expiration": null, "name": "Test Account", "plan_slug": "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -20,14 +20,13 @@ interactions:
       connection: [keep-alive]
       content-length: ['110']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:00:15 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:39 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 409, message: CONFLICT}
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba",
-      "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": "a4c9bce4-2a8c-452f-ae13-0a0b69dfd4ba"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -48,9 +47,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['134']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:00:16 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:40 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 409, message: CONFLICT}
 version: 1

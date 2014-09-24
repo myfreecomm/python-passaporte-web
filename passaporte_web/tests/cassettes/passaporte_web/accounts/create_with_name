@@ -1,7 +1,7 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "name": "No account with this name exists", "expiration":
-      null}'
+    body: '{"expiration": null, "name": "No account with this name exists", "plan_slug":
+      "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

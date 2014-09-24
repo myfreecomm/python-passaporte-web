@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"first_name": "Myfc ID", "last_name": "Clients", "tos": true, "password2":
-      "*SudN7%r$MiYRa!E", "cpf": "1111111111111111111", "password": "*SudN7%r$MiYRa!E",
-      "email": "identity_client@disposableinbox.com"}'
+    body: '{"cpf": "1111111111111111111", "email": "identity_client@disposableinbox.com",
+      "first_name": "Myfc ID", "last_name": "Clients", "password": "*SudN7%r$MiYRa!E",
+      "password2": "*SudN7%r$MiYRa!E", "tos": true}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

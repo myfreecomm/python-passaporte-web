@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"bio": null, "position": null, "language": null, "city": null, "gender":
-      null, "company": null, "profession": null, "state": null, "country": null, "birth_date":
-      null, "timezone": null, "nickname": null}'
+    body: '{"bio": null, "birth_date": null, "city": null, "company": null, "country":
+      null, "gender": null, "language": null, "nickname": null, "position": null,
+      "profession": null, "state": null, "timezone": null}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -15,16 +15,16 @@ interactions:
     method: PUT
     uri: http://sandbox.app.passaporteweb.com.br/accounts/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57//profile/
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAAwMAAAAAAAAAAAA=
+    body: {string: !!python/unicode '{"detail": "You do not have permission to access
+        this resource. You may need to login or otherwise authenticate the request."}'}
     headers:
+      allow: ['GET, PUT, HEAD, OPTIONS']
       connection: [keep-alive]
-      content-encoding: [gzip]
-      content-length: ['20']
-      content-type: [text/html; charset=utf-8]
-      date: ['Mon, 24 Jun 2013 16:32:29 GMT']
+      content-length: ['126']
+      content-type: [application/json]
+      date: ['Wed, 24 Sep 2014 21:47:17 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/0.7.67]
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 403, message: FORBIDDEN}
 version: 1

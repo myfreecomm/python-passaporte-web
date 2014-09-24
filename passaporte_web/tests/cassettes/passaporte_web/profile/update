@@ -1,8 +1,9 @@
 interactions:
 - request:
-    body: '{"bio": "Um usu\u00e1rio usado em testes", "position": null, "language":
-      null, "city": null, "gender": null, "company": null, "profession": null, "state":
-      null, "country": null, "birth_date": null, "timezone": null, "nickname": "teste-user"}'
+    body: '{"bio": "Um usu\u00e1rio usado em testes", "birth_date": null, "city":
+      null, "company": null, "country": null, "gender": null, "language": null, "nickname":
+      "teste-user", "position": null, "profession": null, "state": null, "timezone":
+      null}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -17,22 +18,23 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAE3f1lIC/02R207DMAyGX6XqNT2MsZXuipfgClDlJt6wyEmxw2nau5MM1iHlwr8d21/+HOuZ
-        fL2r6kdbJU7Pqe9xFclnAdpXaCtBzqe+qergmYS8K9eLNuAOCQ540Yrk6xIf0GmMS8XbAG4phuj3
-        yPxvFGl0ktsncns/pWhK4VUk7LqOwenZf7YQQhuAGYKPgh84t3lsO8cOlPLJCXcQqPubRMidWg/b
-        cVzdNjPA2NxBr5rxfrNt1uMGhn6rBr0ZurIdLZCZDLHktU/HmngKkSzEQiwxYSHkCZTQO15ToHXM
-        zyioC78ylKMHTZzdgtkgucKeSevTS+5hAbkaVrDjYstMUV4n/XvBJWNyTsjit3dLiyP15sCe9fln
-        msTZ59MP68jaqcgBAAA=
+        H4sIAM4vI1QC/1VSy24bMQz8lcWevSs7ju1sTv2JnpJC4Eq0TUQviJTTJMi/V3KbdQoIAocUyZmB
+        PvqZYv/Y9T99V7g8l/UaN5liBWBjh74T5Hr6VdcnMlIyttdnkcSPSmXk0bhYLAXIb6OJXiVghhSz
+        4PCKsyIPJ1QluQhWGS3n4ueV1RaPUJxouIBAXp315u5h9dpu9X9pTOF0XR6ZhGJo2xt2EE6ljv7C
+        huTtKz5hsJiXSvQJwlJMOR6R+dsoshiktmsKx6hLdt8VMgQ7x98jpDTepFVlTew4ZwXGxBKEFSRS
+        /0YRsjLbw36aNnfDDDAN97A2w/Sw2w/baQeH9d4c7O6g2nr0QE47Yql7nz56Yp1ytS03ypILNoqs
+        wQhd8JYCa6v73LguAoyjGv2wxNUumB1SaNwr0/7zV+1hAbk51mjnxZeZspy1/fsgFOdqTsjjewxL
+        SyDzEsBf8fVfDIWr0Z9/AOnwmlNGAgAA
     headers:
       allow: ['GET, PUT, HEAD, OPTIONS']
       connection: [keep-alive]
       content-encoding: [gzip]
-      content-length: ['299']
+      content-length: ['366']
       content-type: [application/json]
-      date: ['Wed, 15 Jan 2014 19:19:41 GMT']
+      date: ['Wed, 24 Sep 2014 20:55:42 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept, Accept-Encoding']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
       x-oauth-consumer: [identity_client]
     status: {code: 200, message: OK}
 version: 1

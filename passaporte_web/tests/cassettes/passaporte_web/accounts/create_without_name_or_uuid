@@ -1,6 +1,6 @@
 interactions:
 - request:
-    body: '{"plan_slug": "unittest", "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -19,13 +19,13 @@ interactions:
       connection: [keep-alive]
       content-length: ['53']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:03:37 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:38 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 - request:
-    body: '{"plan_slug": "unittest", "name": "", "expiration": null}'
+    body: '{"expiration": null, "name": "", "plan_slug": "unittest"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -44,13 +44,13 @@ interactions:
       connection: [keep-alive]
       content-length: ['53']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:14:33 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:33 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 - request:
-    body: '{"plan_slug": "unittest", "uuid": "", "expiration": null}'
+    body: '{"expiration": null, "plan_slug": "unittest", "uuid": ""}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -69,9 +69,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['53']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 23:14:34 GMT']
+      date: ['Wed, 24 Sep 2014 21:18:33 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 400, message: BAD REQUEST}
 version: 1

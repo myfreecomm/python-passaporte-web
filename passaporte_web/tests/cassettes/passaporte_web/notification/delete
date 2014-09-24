@@ -11,7 +11,7 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [api_toolkit]
     method: DELETE
-    uri: http://sandbox.app.passaporteweb.com.br/notifications/api/aafb1afd-3af2-4a4b-8d53-a5f381268777/
+    uri: https://sandbox.app.passaporteweb.com.br:443/notifications/api/6d2e371f-388b-4a29-8fbf-3d50f12a1601/
   response:
     body: {string: !!python/unicode ''}
     headers:
@@ -19,9 +19,9 @@ interactions:
       connection: [keep-alive]
       content-length: ['0']
       content-type: [application/json]
-      date: ['Wed, 08 Jan 2014 22:31:59 GMT']
+      date: ['Wed, 24 Sep 2014 20:48:46 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept']
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
     status: {code: 204, message: NO CONTENT}
 version: 1

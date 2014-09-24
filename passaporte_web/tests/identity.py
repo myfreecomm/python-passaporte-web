@@ -73,7 +73,7 @@ class IdentityTest(unittest.TestCase):
 
     def test_user_cpf_must_be_valid(self):
         # cpf cannot be updated by default
-        self.user._meta['fields'].append('cpf') 
+        self.user._meta['fields'].append('cpf')
         self.user.resource_data['cpf'] = '11111111110'
 
         with use_pw_cassette('user/update_with_invalid_cpf'):
@@ -81,7 +81,7 @@ class IdentityTest(unittest.TestCase):
 
     def test_user_cpf_is_unique(self):
         # cpf cannot be updated by default
-        self.user._meta['fields'].append('cpf') 
+        self.user._meta['fields'].append('cpf')
         self.user.resource_data['cpf'] = '11111111111'
 
         with use_pw_cassette('user/update_with_duplicated_cpf'):
