@@ -11,7 +11,7 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [api_toolkit]
     method: GET
-    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/?include_other_services=True&include_expired_accounts=True
+    uri: http://sandbox.app.passaporteweb.com.br/organizations/api/identities/c3769912-baa9-4a0c-9856-395a706c7d57/accounts/?include_expired_accounts=True&include_other_services=True
   response:
     body:
       string: !!binary |

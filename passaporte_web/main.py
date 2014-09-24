@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from httplib import urlsplit
+from six.moves.urllib.parse import urlsplit
+from collections import OrderedDict
 from api_toolkit.entities import Collection, Resource, SessionFactory
 
 __all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application',]
@@ -26,12 +27,12 @@ class PWebSessionFactory(SessionFactory):
         return auth
 
     @classmethod
-    def safe_kwargs(cls, **kwargs):
-        kwargs = super(PWebSessionFactory, cls).safe_kwargs(**kwargs)
+    def safe_params(cls, **kwargs):
+        kwargs = dict(super(PWebSessionFactory, cls).safe_params(**kwargs))
         for item in ('token', 'secret'):
             kwargs.pop(item, None)
 
-        return kwargs
+        return sorted(kwargs.items(), key=lambda t: t[0])
 
 
 class PWebResource(Resource):
@@ -139,13 +140,14 @@ class Account(object):
 class ServiceAccount(PWebResource):
 
     def __new__(cls, *args, **kwargs):
-        instance_keys = kwargs.keys()
+        instance_keys = sorted(kwargs.keys())
         if instance_keys == ['name', 'uuid']:
             instance = Account(**kwargs)
         elif instance_keys == ['account_data']:
             instance = Account(**kwargs['account_data'])
         else:
-            instance =  PWebResource.__new__(cls, *args, **kwargs)
+            instance = super(ServiceAccount, cls).__new__(cls)
+            instance.resource_data = kwargs
 
         return instance
 
@@ -153,7 +155,7 @@ class ServiceAccount(PWebResource):
         super(ServiceAccount, self).__init__(*args, **kwargs)
 
         self.account = Account(name=self.name, uuid=self.uuid)
-        if self.expiration:
+        if getattr(self, 'expiration', None):
             # The api gives a datetime but expects a date
             self.expiration = self.expiration.split()[0]
 
@@ -217,16 +219,14 @@ class ApplicationUsers(PWebCollection):
         url_pieces = urlsplit(self.url)
         url = '{0.scheme}://{0.netloc}/accounts/api/identities/'.format(url_pieces)
 
-        params = self.session_factory.safe_kwargs(**kwargs)
-        params['session'] = self._session
-
-        uuid = params.pop('uuid', None)
+        kwargs['session'] = self._session
+        uuid = kwargs.pop('uuid', None)
         if uuid:
             url = '{0}{1}/'.format(url, uuid)
-        elif 'email' not in params:
+        elif 'email' not in kwargs:
             raise TypeError('Either "uuid" or "email" must be given')
 
-        return self.resource_class.load(url, **params)
+        return self.resource_class.load(url, **kwargs)
 
     def authenticate(self, **kwargs):
         url_pieces = urlsplit(self.url)

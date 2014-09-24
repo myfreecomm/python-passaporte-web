@@ -42,46 +42,6 @@ interactions:
       Content-Type: [application/json]
       User-Agent: [api_toolkit]
     method: GET
-    uri: http://sandbox.app.passaporteweb.com.br/accounts/api/identities/?include_other_services=True&email=identity_client%40disposableinbox.com
-  response:
-    body:
-      string: !!binary |
-        H4sIAOBC0FIC/72Wy27bMBBFf0XQurT1oF5ZNSi66CLtprs2EIbkMCYgUwJJxXGN/HtJ2S4cNzXs
-        IPXGMDTSnUsecmY2sVTGulbDEuObKP4iUDvl1vGHKO7gIPCpUz4SHlvUoh3AOI2m1biyPuzMiD40
-        jkqEl3lelU2TZoQBNIRCwklTFyXJmwKqpOSVKKogpWwL3KlHPJAYBDhslZZ9O5ouqC2cG27mcwta
-        sP5pBsMwG8BaGHrjcIVsxvvljJk5cN6P2tk5DGqutgtRaOfnuJkHO7p3SioOTvU6rGoTT4L+X5aF
-        /VDWXeLnhdxkKn72MnubXurHJt7v753SC7ARDJ3/4ueYJFiFX1mgjQ92NmVcYJEJUgmoCa2ThDBR
-        NERIhKZs8pwjDVk28dCBbm03PoTPLHYdmmmNu3yfvcklGo7R7dZPCJq+w8lX3K883fg+ZL4MQm8e
-        QKtfB4v+g6WQaSErVhCoZOk55AWpiyoniYAiF3mSY1pPHPBpUGZS8Jn12HXHbC49GX+TeIsph0ZD
-        104gdq72WM5ReQULH63rl/8CA6+BGe27c6E1oJQ5JVnC/f1I8safqaYiok6LJEuwZpRencsFpk5w
-        OUflFS6jVs6hdYdc7tbRN7dAE90O0x3dFokXbEAslX5nOFgAK2UmCVBkhOYpIzX3tayhaSpFDXWV
-        iavDucDUCTjnqJwJ52u/vy3RSrlF5BbKRiEY4ZOv2vb/FzdBQSRJKYgsU+ErgJCElViSmjZC+OLA
-        aNpcndMFpk5wOkflBCeybenikNd3//x6jQcob5hvjCSDmhNahCOHqa/OkLCyEVJQBldnc4GpE2zO
-        UYmf7/dj23ItDWLoMEeTm+8qj4rjdurZzU7rlm+HvrfOYDtREoa586awo8zbgQmXoKZdP4p+FMoO
-        vQXWodLBlfcQNmwwvVQdXnV83OX0hn8D9Gqjl1ILAAA=
-    headers:
-      allow: ['GET, HEAD, OPTIONS']
-      connection: [keep-alive]
-      content-encoding: [gzip]
-      content-length: ['716']
-      content-type: [application/json]
-      date: ['Fri, 10 Jan 2014 18:58:40 GMT']
-      p3p: [CP="NON DSP COR CURa TIA"]
-      server: [nginx/1.4.4]
-      vary: ['Authenticate, Accept, Accept-Encoding']
-    status: {code: 200, message: OK}
-- request:
-    body: null
-    headers:
-      Accept: [application/json]
-      Accept-Encoding: ['gzip, deflate']
-      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
-      Cache-Control: [no-cache]
-      Connection: [keep-alive]
-      Content-Length: ['0']
-      Content-Type: [application/json]
-      User-Agent: [api_toolkit]
-    method: GET
     uri: http://sandbox.app.passaporteweb.com.br/accounts/api/identities/?email=identity_client%40disposableinbox.com&include_other_services=True
   response:
     body:

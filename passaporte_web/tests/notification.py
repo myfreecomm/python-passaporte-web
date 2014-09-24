@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import six
 from uuid import uuid4
 import unittest
 
 import requests
-from helpers import use_cassette as use_pw_cassette
+from .helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Notification
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
@@ -65,7 +66,7 @@ class ServiceAccountNotificationTest(unittest.TestCase):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
         with use_pw_cassette('accounts/load_user_accounts'):
-            self.service_account = self.user.accounts.from_seed().next()
+            self.service_account = six.next(self.user.accounts.from_seed())
             self.service_account.load_options()
 
     def test_send_notification_returns_a_notification_destined_to_the_service_account(self):
@@ -95,7 +96,7 @@ class ServiceAccountNotificationTest(unittest.TestCase):
         with use_pw_cassette('accounts/notifications'):
             notifications = list(self.service_account.notifications.all())
 
-        self.assertEquals(len(notifications), 5)
+        self.assertEqual(len(notifications), 5)
         self.assertTrue(isinstance(notifications[0], Notification))
 
     def test_notifications_should_be_ordered(self):
@@ -107,9 +108,9 @@ class ServiceAccountNotificationTest(unittest.TestCase):
 
         notifications = sorted(notifications, key=lambda x: x.scheduled_to, reverse=True)
 
-        self.assertEquals(len(ordered_notifications), 5)
-        for i in xrange(5):
-            self.assertEquals(notifications[i].resource_data, ordered_notifications[i].resource_data)
+        self.assertEqual(len(ordered_notifications), 5)
+        for i in range(5):
+            self.assertEqual(notifications[i].resource_data, ordered_notifications[i].resource_data)
 
 
 class NotificationTest(unittest.TestCase):

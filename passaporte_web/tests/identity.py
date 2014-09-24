@@ -2,7 +2,7 @@
 import unittest
 
 import requests
-from helpers import use_cassette as use_pw_cassette
+from .helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, Identity, Profile
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
@@ -44,8 +44,8 @@ class IdentityTest(unittest.TestCase):
             updated_profile = profile.save()
 
         self.assertTrue(isinstance(updated_profile, Profile))
-        self.assertEquals(updated_profile.bio, profile.bio)
-        self.assertEquals(updated_profile.nickname, profile.nickname)
+        self.assertEqual(updated_profile.bio, profile.bio)
+        self.assertEqual(updated_profile.nickname, profile.nickname)
 
     def test_application_must_have_permission_to_update_user_profile(self):
         with use_pw_cassette('profile/read'):
@@ -68,11 +68,12 @@ class IdentityTest(unittest.TestCase):
             updated_user = self.user.save()
 
         self.assertTrue(isinstance(updated_user, Identity))
-        self.assertEquals(updated_user.send_partner_news, False)
-        self.assertEquals(updated_user.send_myfreecomm_news, False)
+        self.assertEqual(updated_user.send_partner_news, False)
+        self.assertEqual(updated_user.send_myfreecomm_news, False)
 
     def test_user_cpf_must_be_valid(self):
         # cpf cannot be updated by default
+        self.user._meta['fields'] = list(self.user._meta['fields'])
         self.user._meta['fields'].append('cpf')
         self.user.resource_data['cpf'] = '11111111110'
 
@@ -81,6 +82,7 @@ class IdentityTest(unittest.TestCase):
 
     def test_user_cpf_is_unique(self):
         # cpf cannot be updated by default
+        self.user._meta['fields'] = list(self.user._meta['fields'])
         self.user._meta['fields'].append('cpf')
         self.user.resource_data['cpf'] = '11111111111'
 

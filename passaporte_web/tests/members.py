@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+import six
 import unittest
 
 import requests
-from helpers import use_cassette as use_pw_cassette
+from .helpers import use_cassette as use_pw_cassette
 
 from passaporte_web.main import Application, AccountMembers, AccountMember
 from passaporte_web.tests.helpers import TEST_USER, TEST_USER_2, APP_CREDENTIALS
@@ -11,7 +12,7 @@ __all__ = ['AccountMembersTest', 'AccountMemberTest']
 
 
 class AccountMembersTest(unittest.TestCase):
-     
+
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
             self.app = Application(**APP_CREDENTIALS)
@@ -20,11 +21,11 @@ class AccountMembersTest(unittest.TestCase):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
         with use_pw_cassette('accounts/load_user_accounts'):
-            self.service_account = self.user.accounts.all().next()
+            self.service_account = six.next(self.user.accounts.all())
             self.service_account.load_options()
 
     def test_members_is_a_collection(self):
-        self.assertTrue(isinstance(self.service_account.members, AccountMembers)) 
+        self.assertTrue(isinstance(self.service_account.members, AccountMembers))
 
     def test_members_all_returns_a_list_of_account_member(self):
         with use_pw_cassette('accounts/members/list'):
@@ -32,7 +33,7 @@ class AccountMembersTest(unittest.TestCase):
 
         for i in account_members:
             self.assertTrue(isinstance(i, AccountMember))
-   
+
     def test_members_create_with_user_role_returns_a_member_with_user_role(self):
         with use_pw_cassette('accounts/members/create_with_user_role'):
             account_member = self.service_account.members.create(
@@ -40,8 +41,8 @@ class AccountMembersTest(unittest.TestCase):
             )
 
         self.assertTrue(isinstance(account_member, AccountMember))
-        self.assertEquals(account_member.identity['uuid'], TEST_USER_2['uuid'])
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.identity['uuid'], TEST_USER_2['uuid'])
+        self.assertEqual(account_member.roles, ['user'])
 
     def test_members_create_with_owner_role_returns_a_member_with_owner_role(self):
         with use_pw_cassette('accounts/members/create_with_owner_role'):
@@ -50,21 +51,21 @@ class AccountMembersTest(unittest.TestCase):
             )
 
         self.assertTrue(isinstance(account_member, AccountMember))
-        self.assertEquals(account_member.identity['uuid'], TEST_USER_2['uuid'])
-        self.assertEquals(account_member.roles, ['owner'])
+        self.assertEqual(account_member.identity['uuid'], TEST_USER_2['uuid'])
+        self.assertEqual(account_member.roles, ['owner'])
 
     def test_members_create_with_a_list_of_roles_returns_a_member_with_a_list_of_roles(self):
         with use_pw_cassette('accounts/members/create_with_list_of_roles'):
             account_member = self.service_account.members.create(
-                identity=TEST_USER_2['uuid'], 
-                roles=[unicode(range(5)), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345']
+                identity=TEST_USER_2['uuid'],
+                roles=[six.text_type([0, 1, 2, 3, 4]), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345']
             )
 
         self.assertTrue(isinstance(account_member, AccountMember))
-        self.assertEquals(account_member.identity['uuid'], TEST_USER_2['uuid'])
-        self.assertEquals(
-            account_member.roles, 
-            [unicode(range(5)), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'] 
+        self.assertEqual(account_member.identity['uuid'], TEST_USER_2['uuid'])
+        self.assertEqual(
+            account_member.roles,
+            [six.text_type([0, 1, 2, 3, 4]), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345']
         )
 
     def test_members_create_without_role_should_default_to_user_role(self):
@@ -72,10 +73,10 @@ class AccountMembersTest(unittest.TestCase):
             account_member = self.service_account.members.create(
                 identity=TEST_USER_2['uuid'], roles=[]
             )
-        
+
         self.assertTrue(isinstance(account_member, AccountMember))
-        self.assertEquals(account_member.identity['uuid'], TEST_USER_2['uuid'])
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.identity['uuid'], TEST_USER_2['uuid'])
+        self.assertEqual(account_member.roles, ['user'])
 
     def test_members_create_for_expired_account_fails(self):
         with use_pw_cassette('accounts/members/create_for_expired_account'):
@@ -109,21 +110,21 @@ class AccountMemberTest(unittest.TestCase):
             self.user = self.app.users.get(uuid=TEST_USER['uuid'])
 
         with use_pw_cassette('accounts/load_user_accounts'):
-            self.service_account = self.user.accounts.all().next()
+            self.service_account = six.next(self.user.accounts.all())
             self.service_account.load_options()
 
         with use_pw_cassette('accounts/members/list'):
-            self.account_member = self.service_account.members.all().next()
+            self.account_member = six.next(self.service_account.members.all())
 
     def test_load_should_keep_the_url_even_if_the_resource_data_doesnt_have_it(self):
         with use_pw_cassette('accounts/members/load_account_member_with_admin_role'):
             account_member = AccountMember.load(
                 self.account_member.url, session=self.account_member._session
             )
-    
-        self.assertTrue(isinstance(account_member, AccountMember)) 
+
+        self.assertTrue(isinstance(account_member, AccountMember))
         self.assertEqual(self.account_member.url, account_member.url)
-        self.assertFalse(account_member.resource_data.has_key(AccountMember.url_attribute_name))
+        self.assertFalse(AccountMember.url_attribute_name in account_member.resource_data)
 
     def test_successful_save_with_user_role(self):
         with use_pw_cassette('accounts/members/load_account_member_with_admin_role'):
@@ -131,19 +132,19 @@ class AccountMemberTest(unittest.TestCase):
                 self.account_member.url, session=self.account_member._session
             )
 
-        self.assertEquals(account_member.roles, ['admin'])
+        self.assertEqual(account_member.roles, ['admin'])
 
         with use_pw_cassette('accounts/members/update_with_user_role'):
             account_member.roles = ['user']
             account_member = account_member.save()
 
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.roles, ['user'])
 
         with use_pw_cassette('accounts/members/load_account_member_with_user_role'):
             account_member = AccountMember.load(
                 account_member.url, session=account_member._session
             )
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.roles, ['user'])
 
     def test_successful_save_with_owner_role(self):
         with use_pw_cassette('accounts/members/load_account_member_with_admin_role'):
@@ -151,19 +152,19 @@ class AccountMemberTest(unittest.TestCase):
                 self.account_member.url, session=self.account_member._session
             )
 
-        self.assertEquals(account_member.roles, ['admin'])
+        self.assertEqual(account_member.roles, ['admin'])
 
         with use_pw_cassette('accounts/members/update_with_owner_role'):
             account_member.roles = ['owner']
             account_member = account_member.save()
 
-        self.assertEquals(account_member.roles, ['owner'])
+        self.assertEqual(account_member.roles, ['owner'])
 
         with use_pw_cassette('accounts/members/load_account_member_with_owner_role'):
             account_member = AccountMember.load(
                 account_member.url, session=account_member._session
             )
-        self.assertEquals(account_member.roles, ['owner'])
+        self.assertEqual(account_member.roles, ['owner'])
 
     def test_successful_save_with_a_list_of_roles(self):
         with use_pw_cassette('accounts/members/load_account_member_with_admin_role'):
@@ -171,20 +172,20 @@ class AccountMemberTest(unittest.TestCase):
                 self.account_member.url, session=self.account_member._session
             )
 
-        self.assertEquals(account_member.roles, ['admin'])
+        self.assertEqual(account_member.roles, ['admin'])
 
-        with use_pw_cassette('accounts/members/update_with_a_list_of_roles'):
-            account_member.roles = [unicode(range(5)), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'] 
+        with use_pw_cassette('accounts/members/update_with_a_list_of_roles', record_mode='new_episodes'):
+            account_member.roles = [six.text_type([0, 1, 2, 3, 4]), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345']
             account_member = account_member.save()
 
-        self.assertEquals(account_member.roles, [unicode(range(5)), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'])
+        self.assertEqual(account_member.roles, [six.text_type([0, 1, 2, 3, 4]), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'])
 
         with use_pw_cassette('accounts/members/load_account_member_with_a_list_of_roles'):
             account_member = AccountMember.load(
                 account_member.url, session=account_member._session
             )
 
-        self.assertEquals(account_member.roles, [unicode(range(5)), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'])
+        self.assertEqual(account_member.roles, [six.text_type([0, 1, 2, 3, 4]), u'çãéê®©þ«»', u'test-user', u'668', u'user', u"{'a': 'a'}", u'owner', u'12345'])
 
     def test_successful_save_with_an_empty_list_of_roles_defaults_to_user_role(self):
         with use_pw_cassette('accounts/members/load_account_member_with_admin_role'):
@@ -192,19 +193,19 @@ class AccountMemberTest(unittest.TestCase):
                 self.account_member.url, session=self.account_member._session
             )
 
-        self.assertEquals(account_member.roles, ['admin'])
+        self.assertEqual(account_member.roles, ['admin'])
 
         with use_pw_cassette('accounts/members/update_with_empty_list_of_roles'):
             account_member.roles = []
             account_member = account_member.save()
 
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.roles, ['user'])
 
         with use_pw_cassette('accounts/members/load_account_member_with_user_role'):
             account_member = AccountMember.load(
                 account_member.url, session=account_member._session
             )
-        self.assertEquals(account_member.roles, ['user'])
+        self.assertEqual(account_member.roles, ['user'])
 
     def test_save_for_expired_account_fails(self):
         with use_pw_cassette('accounts/members/save_for_expired_account'):
@@ -229,7 +230,7 @@ class AccountMemberTest(unittest.TestCase):
     def test_delete_for_expired_account_fails(self):
         with use_pw_cassette('accounts/members/delete_for_expired_account'):
             self.assertRaises(requests.HTTPError, self.account_member.delete)
-    
+
     def test_delete_for_owner_account_member_fails(self):
         with use_pw_cassette('accounts/members/load_account_member_with_owner_role'):
             account_member = AccountMember.load(
@@ -238,4 +239,4 @@ class AccountMemberTest(unittest.TestCase):
 
         with use_pw_cassette('accounts/members/delete_for_owner_account_member'):
             self.assertRaises(requests.HTTPError, account_member.delete)
-            
+
