@@ -27,11 +27,11 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name="python-passaporte-web",
-    version="0.2.1",
+    version="0.2.2",
     packages=["passaporte_web"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),
-    tests_require=['tox==1.6.1', 'virtualenv>=1.11.2'],
+    tests_require=['tox>=1.6.1', 'virtualenv>=1.11.2'],
     cmdclass = {'test': Tox},
     test_suite='passaporte_web.tests',
     author="vitormazzi",
