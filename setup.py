@@ -27,7 +27,7 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name="python-passaporte-web",
-    version="0.2.3",
+    version="0.2.4",
     packages=["passaporte_web"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),

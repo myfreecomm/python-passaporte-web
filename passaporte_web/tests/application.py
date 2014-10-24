@@ -6,32 +6,35 @@ import requests
 import api_toolkit
 from .helpers import use_cassette as use_pw_cassette
 
-from passaporte_web.main import Application, ServiceAccount, Account, Identity
+from passaporte_web.main import PassaporteWeb, ServiceAccount, Account, Identity
 from passaporte_web.tests.helpers import TEST_USER, APP_CREDENTIALS
 from passaporte_web.tests.service_account import CanGetServiceAccount
 
-__all__ = ['ApplicationTest', 'ApplicationUsersTest', 'ApplicationAccountsTest']
+__all__ = ['PassaporteWebTest', 'UsersTest', 'AccountsTest', 'ApplicationsTest']
 
 
-class ApplicationTest(unittest.TestCase):
+class PassaporteWebTest(unittest.TestCase):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
-            self.app = Application(**APP_CREDENTIALS)
+            self.app = PassaporteWeb(**APP_CREDENTIALS)
 
-    def test_instance_has_accounts_and_users(self):
+    def test_instance_has_accounts_users_and_applications(self):
         self.assertTrue(hasattr(self.app, 'accounts'))
         self.assertTrue(isinstance(self.app.accounts, api_toolkit.Collection))
 
         self.assertTrue(hasattr(self.app, 'users'))
         self.assertTrue(isinstance(self.app.users, api_toolkit.Collection))
 
+        self.assertTrue(hasattr(self.app, 'applications'))
+        self.assertTrue(isinstance(self.app.applications, api_toolkit.Collection))
 
-class ApplicationUsersTest(unittest.TestCase):
+
+class UsersTest(unittest.TestCase):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
-            self.app = Application(**APP_CREDENTIALS)
+            self.app = PassaporteWeb(**APP_CREDENTIALS)
 
     def test_application_users_are_not_iterable(self):
         app_users = self.app.users.all()
@@ -257,11 +260,11 @@ class CanLoadServiceAccounts(unittest.TestCase):
             self.assertRaises(requests.HTTPError, six.next, self.app.accounts.all())
 
 
-class ApplicationAccountsTest(CanGetServiceAccount, CanLoadServiceAccounts):
+class AccountsTest(CanGetServiceAccount, CanLoadServiceAccounts):
 
     def setUp(self):
         with use_pw_cassette('application/collections_options'):
-            self.app = Application(**APP_CREDENTIALS)
+            self.app = PassaporteWeb(**APP_CREDENTIALS)
 
         self.collection = self.app.accounts
 
@@ -290,4 +293,38 @@ class ApplicationAccountsTest(CanGetServiceAccount, CanLoadServiceAccounts):
                 name='Test Account',
                 plan_slug='unittest',
                 expiration=None,
+            )
+
+
+class ApplicationsTest(unittest.TestCase):
+
+    def setUp(self):
+        with use_pw_cassette('application/collections_options'):
+            self.app = PassaporteWeb(**APP_CREDENTIALS)
+
+        self.collection = self.app.applications
+
+    def test_applications_are_a_collection(self):
+        self.assertTrue(isinstance(self.app.applications, api_toolkit.Collection))
+
+    def test_applications_cannot_be_deleted(self):
+        with use_pw_cassette('application/applications_list'):
+            first_application = six.next(self.app.applications.all())
+            first_application.load_options()
+
+        self.assertRaises(ValueError, first_application.delete)
+
+    def test_applications_cannot_be_updated(self):
+        with use_pw_cassette('application/application_list'):
+            first_application = six.next(self.app.applications.all())
+            first_application.load_options()
+
+        self.assertRaises(ValueError, first_application.save)
+
+    def test_applications_cannot_be_created(self):
+        with use_pw_cassette('application/application_list'):
+            self.assertRaises(
+                ValueError, self.app.applications.create,
+                name='Test App',
+                slug='unittest',
             )

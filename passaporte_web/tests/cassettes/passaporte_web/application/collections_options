@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGaPIFQC/42QSw7CIBBAr9KwtunendF4AHVnjJnAtI4BSgawNca7y9RojG5cQd6Dx+emWkJr
+        H4sIAPKHSlQC/42QSw7CIBBAr9KwtunendF4AHVnjJnAtI4BSgawNca7y9RojG5cQd6Dx+emWkJr
         oppXN5UzmTJRG+xwXAtXs0oFC/4Ybe5Ebcv4NjgGYkjUe1ErSLgjh2/twaGI5Qn4Ce+SA44o5+0V
         hGBJT4HmHEul6E821sMw1G3Prs5s0eve4FR22SYqodRM0kCCn73OfqMrFHYokNEb5D/v8NuRZXUQ
         mnBMTfkf8lP39eAt8oU0Vgut++yTrDQYNVN4/ZW6PwBY5aq4eQEAAA==
@@ -25,7 +25,7 @@ interactions:
       content-encoding: [gzip]
       content-length: ['211']
       content-type: [application/json]
-      date: ['Mon, 22 Sep 2014 21:06:46 GMT']
+      date: ['Fri, 24 Oct 2014 17:10:10 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
       server: [nginx/1.6.2]
       vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
@@ -47,7 +47,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGePIFQC/41Sy07DMBD8lchnokgcOVJRiRvqFSFrsTfJIr+0dkmjqv+ObWhVSCpx252dGc/a
+        H4sIAPOHSlQC/41Sy07DMBD8lchnokgcOVJRiRvqFSFrsTfJIr+0dkmjqv+ObWhVSCpx252dGc/a
         Poqe0OgoHppjLjkm6cBibsVmBN6WobhrhIFbk4hOywCcHLJ0OBUr8ei9QXAXUvKrcIAYJ8/6fuGq
         Ql8Fu83L9gKSG+mdkgSV6BMSeSctxggDrpnbfY6sRnADyvNBa7y6gJ17RlTe2ps7XHv8yooWyBT0
         qRTf8KkKOGKxehUQgiFVI3cf0bsiu8YO7TRNbe/Ztns26JTX+LOESVRut6tDDQkWWmv+QjNk7C2D
@@ -58,9 +58,36 @@ interactions:
       content-encoding: [gzip]
       content-length: ['282']
       content-type: [application/json]
-      date: ['Mon, 22 Sep 2014 21:06:47 GMT']
+      date: ['Fri, 24 Oct 2014 17:10:11 GMT']
       p3p: [CP="NON DSP COR CURa TIA"]
       server: [nginx/1.6.2]
       vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
     status: {code: 200, message: OK}
+- request:
+    body: null
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic cXhSU05jSWRlQToxZjBBVkNaUEpiUm5kRjlGTlNHTU9XTWZIOUtNVURhWA==]
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
+    method: OPTIONS
+    uri: http://sandbox.app.passaporteweb.com.br/applications/api/
+  response:
+    body: {string: !!python/unicode '{"detail": "request was throttled"}'}
+    headers:
+      allow: ['GET, HEAD, OPTIONS']
+      connection: [keep-alive]
+      content-length: ['35']
+      content-type: [application/json]
+      date: ['Fri, 24 Oct 2014 17:10:11 GMT']
+      p3p: [CP="NON DSP COR CURa TIA"]
+      retry-after: [0.30 sec]
+      server: [nginx/1.6.2]
+      vary: ['Authenticate, Accept, Cookie']
+      x-throttle: [status=FAILURE; next=0.30 sec]
+    status: {code: 429, message: UNKNOWN STATUS CODE}
 version: 1
