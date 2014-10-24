@@ -77,17 +77,21 @@ interactions:
     method: OPTIONS
     uri: http://sandbox.app.passaporteweb.com.br/applications/api/
   response:
-    body: {string: !!python/unicode '{"detail": "request was throttled"}'}
+    body:
+      string: !!binary |
+        H4sIAPyfSlQC/42OsQ4CIQxAf+XSWcLu5ncYhwZqwgVKU7hwxvjvAovRWxz7+vrSJwhqoQLn5Qoo
+        EoPDGjLbtWSG0/LFdtNaM/esyWwaiV325IeUtlhDD1U7lx4rHm5T/EUP7OzWoRJ70j9/OHaGZmTQ
+        Snu1EjHw7DIm6lG4fORheSpOg8yxb+H1BphZV6kFAQAA
     headers:
-      allow: ['GET, HEAD, OPTIONS']
-      connection: [keep-alive]
-      content-length: ['35']
-      content-type: [application/json]
-      date: ['Fri, 24 Oct 2014 17:10:11 GMT']
-      p3p: [CP="NON DSP COR CURa TIA"]
-      retry-after: [0.30 sec]
-      server: [nginx/1.6.2]
-      vary: ['Authenticate, Accept, Cookie']
-      x-throttle: [status=FAILURE; next=0.30 sec]
-    status: {code: 429, message: UNKNOWN STATUS CODE}
+      Allow: ['GET, HEAD, OPTIONS']
+      Connection: [keep-alive]
+      Content-Encoding: [gzip]
+      Content-Length: ['147']
+      Content-Type: [application/json]
+      Date: ['Fri, 24 Oct 2014 18:52:44 GMT']
+      P3P: [CP="NON DSP COR CURa TIA"]
+      Server: [nginx/1.6.2]
+      Vary: ['Authenticate, Accept, Cookie, Accept-Encoding']
+      X-Throttle: [status=SUCCESS; next=1.00 sec]
+    status: {code: 200, message: OK}
 version: 1
