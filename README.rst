@@ -2,6 +2,10 @@
 python-passaporte-web
 =====================
 
+.. image:: https://travis-ci.org/myfreecomm/python-passaporte-web.png?branch=master
+        :target: https://travis-ci.org/myfreecomm/python-passaporte-web
+
+
 Sobre o Passaporte Web
 ----------------------
 
@@ -55,7 +59,7 @@ Exemplo de utilização
         plan_slug='test-plan',
         expiration=None,
     )
-    
+
 
     # Listar as contas associadas a esta aplicação
     for account in my_application.accounts.all():
