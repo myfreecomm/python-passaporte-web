@@ -3,7 +3,7 @@ from six.moves.urllib.parse import urlsplit
 from collections import OrderedDict
 from api_toolkit.entities import Collection, Resource, SessionFactory
 
-__all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'Application',]
+__all__ = ['Notification', 'Profile', 'Identity', 'ServiceAccount', 'PassaporteWeb',]
 
 
 class PWebSessionFactory(SessionFactory):
@@ -213,7 +213,7 @@ class IdentityAccounts(PWebCollection):
             self.url = identity_account_url
 
 
-class ApplicationUsers(PWebCollection):
+class Users(PWebCollection):
 
     def get(self, **kwargs):
         url_pieces = urlsplit(self.url)
@@ -250,12 +250,16 @@ class ApplicationUsers(PWebCollection):
 
 
 class Application(PWebResource):
+    url_attribute_name = 'url'
+
+
+class PassaporteWeb(PWebResource):
 
     def __init__(self, host, token, secret):
         self.host = host
         self.token = token
         self.secret = secret
-        super(Application, self).__init__()
+        super(PassaporteWeb, self).__init__()
         self.prepare_collections()
 
     def prepare_collections(self, *args, **kwargs):
@@ -265,8 +269,14 @@ class Application(PWebResource):
         )
         self.accounts.load_options()
 
-        self.users = ApplicationUsers(
+        self.users = Users(
             url='{0}/accounts/api/create/'.format(self.host),
             token=self.token, secret=self.secret, resource_class=Identity
         )
         self.users.load_options()
+
+        self.applications = PWebCollection(
+            url='{0}/applications/api/'.format(self.host),
+            token=self.token, secret=self.secret, resource_class=Application
+        )
+        self.applications.load_options()
